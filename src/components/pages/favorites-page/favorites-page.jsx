@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+// import PropTypes from 'prop-types';
+// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
 
-const Favorites = (props) => {
-  const {isAuthorized, userName} = props;
+const FavoritesPage = () => {
   const isMainPage = false;
 
   return (
     <div className="page">
-      <Header isMainPage={isMainPage} isAuthorized={isAuthorized} userName={userName} />
+      <Header isMainPage={isMainPage} />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -142,14 +141,9 @@ const Favorites = (props) => {
   );
 };
 
-Favorites.propTypes = {
-  isAuthorized: PropTypes.bool,
-  userName: PropTypes.string,
-};
+// FavoritesPage.propTypes = {
+//   isAuthorized: PropTypes.bool,
+//   userName: PropTypes.string,
+// };
 
-Favorites.defaultProps = {
-  isAuthorized: false,
-  userName: NOT_AUTHORIZED_USERNAME,
-};
-
-export default Favorites;
+export default FavoritesPage;

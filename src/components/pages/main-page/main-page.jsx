@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
 import Header from '../../header/header';
 import Card from '../../card/card';
 
-const Main = (props) => {
-  const {citiesCount, isAuthorized, userName} = props;
+const MainPage = (props) => {
+  const {citiesCount} = props;
   const isMainPage = true;
 
   return (
     <div className="page page--gray page--main">
-      <Header isMainPage={isMainPage} isAuthorized={isAuthorized} userName={userName} />
+      <Header isMainPage={isMainPage} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -82,15 +82,8 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
+MainPage.propTypes = {
   citiesCount: PropTypes.number.isRequired,
-  isAuthorized: PropTypes.bool,
-  userName: PropTypes.string,
 };
 
-Main.defaultProps = {
-  isAuthorized: false,
-  userName: NOT_AUTHORIZED_USERNAME,
-};
-
-export default Main;
+export default MainPage;

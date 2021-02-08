@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+// import PropTypes from 'prop-types';
+// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
 import Header from '../../header/header';
 
-const Room = (props) => {
-  const {isAuthorized, userName} = props;
+const RoomPage = () => {
   const isMainPage = false;
 
   return (
     <div className="page">
-      <Header isMainPage={isMainPage} isAuthorized={isAuthorized} userName={userName} />
+      <Header isMainPage={isMainPage} />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -310,14 +309,9 @@ const Room = (props) => {
   );
 };
 
-Room.propTypes = {
-  isAuthorized: PropTypes.bool,
-  userName: PropTypes.string,
-};
+// RoomPage.propTypes = {
+//   isAuthorized: PropTypes.bool,
+//   userName: PropTypes.string,
+// };
 
-Room.defaultProps = {
-  isAuthorized: false,
-  userName: NOT_AUTHORIZED_USERNAME,
-};
-
-export default Room;
+export default RoomPage;

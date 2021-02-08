@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NOT_AUTHORIZED_USERNAME} from '../../const';
+// import {NOT_AUTHORIZED_USERNAME} from '../../const';
 
 const Header = (props) => {
-  const {isMainPage, isAuthorized, userName} = props;
+  const {isMainPage} = props;
 
   return (
     <header className="header">
@@ -21,7 +21,7 @@ const Header = (props) => {
                 <a className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className={isAuthorized ? `header__user-name user__name` : `header__login`}>{userName}</span>
+                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
                 </a>
               </li>
             </ul>
@@ -34,13 +34,6 @@ const Header = (props) => {
 
 Header.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
-  isAuthorized: PropTypes.bool,
-  userName: PropTypes.string,
-};
-
-Header.defaultProps = {
-  isAuthorized: false,
-  userName: NOT_AUTHORIZED_USERNAME,
 };
 
 export default Header;

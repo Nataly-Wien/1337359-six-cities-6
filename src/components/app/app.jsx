@@ -1,33 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Main from '../pages/main/main';
-import Login from '../pages/login/login';
-import Favorites from '../pages/favorites/favorites';
-import Room from '../pages/room/room';
-import NotFound from '../pages/not-found/not-found';
-import {NOT_AUTHORIZED_USERNAME} from '../../const';
+import MainPage from '../pages/main-page/main-page';
+import LoginPage from '../pages/login-page/login-page';
+import FavoritesPage from '../pages/favorites-page/favorites-page';
+import RoomPage from '../pages/room-page/room-page';
+import NotFoundPage from '../pages/not-found-page/not-found-page';
+// import {NOT_AUTHORIZED_USERNAME} from '../../const';
 
 const App = (props) => {
-  const {citiesCount, isAuthorized, userName} = props;
+  const {citiesCount} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main citiesCount={citiesCount} isAuthorized={isAuthorized} userName={userName} />
+          <MainPage citiesCount={citiesCount} />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <LoginPage />
         </Route>
         <Route exact path="/favorites">
-          <Favorites isAuthorized={isAuthorized} userName={userName} />
+          <FavoritesPage />
         </Route>
         <Route exact path="/offer/:id">
-          <Room isAuthorized={isAuthorized} userName={userName} />
+          <RoomPage />
         </Route>
         <Route>
-          <NotFound />
+          <NotFoundPage />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -36,13 +36,6 @@ const App = (props) => {
 
 App.propTypes = {
   citiesCount: PropTypes.number.isRequired,
-  isAuthorized: PropTypes.bool,
-  userName: PropTypes.string,
-};
-
-App.defaultProps = {
-  isAuthorized: false,
-  userName: NOT_AUTHORIZED_USERNAME,
 };
 
 export default App;
