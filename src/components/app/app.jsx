@@ -1,29 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import MainPage from '../main-page/main-page';
-import Login from '../login/login';
-import Favorites from '../favorites/favorites';
-import Room from '../room/room';
-import NotFound from '../not-found/not-found';
+import Main from '../pages/main/main';
+import Login from '../pages/login/login';
+import Favorites from '../pages/favorites/favorites';
+import Room from '../pages/room/room';
+import NotFound from '../pages/not-found/not-found';
+import {NOT_AUTHORIZED_USERNAME} from '../../const';
 
 const App = (props) => {
-  const {citiesCount} = props;
+  const {citiesCount, isAuthorized, userName} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainPage citiesCount={citiesCount} />
+          <Main citiesCount={citiesCount} isAuthorized={isAuthorized} userName={userName} />
         </Route>
         <Route exact path="/login">
           <Login />
         </Route>
         <Route exact path="/favorites">
-          <Favorites />
+          <Favorites isAuthorized={isAuthorized} userName={userName} />
         </Route>
         <Route exact path="/offer/:id">
-          <Room />
+          <Room isAuthorized={isAuthorized} userName={userName} />
         </Route>
         <Route>
           <NotFound />
@@ -35,6 +36,13 @@ const App = (props) => {
 
 App.propTypes = {
   citiesCount: PropTypes.number.isRequired,
+  isAuthorized: PropTypes.bool,
+  userName: PropTypes.string,
+};
+
+App.defaultProps = {
+  isAuthorized: false,
+  userName: NOT_AUTHORIZED_USERNAME,
 };
 
 export default App;
