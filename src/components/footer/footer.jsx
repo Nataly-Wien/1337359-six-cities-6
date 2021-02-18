@@ -1,20 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
-const Footer = (props) => {
-  const {isMainPage} = props;
-
+const Footer = () => {
   return (
     <footer className="footer container">
-      <a className="footer__logo-link" href={isMainPage ? `main.html` : null}>
+      <Link to="/" className="footer__logo-link">
         <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-      </a>
+      </Link>
     </footer>
   );
-};
-
-Footer.propTypes = {
-  isMainPage: PropTypes.bool.isRequired,
 };
 
 export default Footer;

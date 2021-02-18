@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import {NOT_AUTHORIZED_USERNAME} from '../../../const';
 import Header from '../../header/header';
-import Card from '../../card/card';
+import OffersList from '../../offers-list/offers-list';
+import {hotelTypesValidation} from '../../../types-validation/';
+
 
 const MainPage = (props) => {
-  const {citiesCount} = props;
+  const {hotels} = props;
   const isMainPage = true;
 
   return (
@@ -68,9 +70,7 @@ const MainPage = (props) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {[...Array(citiesCount)].map((it, i) => <Card key={i} />)}
-              </div >
+              <OffersList hotels={hotels} isFavoritePage={false} />
             </section >
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -83,7 +83,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  citiesCount: PropTypes.number.isRequired,
+  hotels: PropTypes.arrayOf(hotelTypesValidation),
 };
 
 export default MainPage;
