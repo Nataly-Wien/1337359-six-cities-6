@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
 import OffersList from '../../offers-list/offers-list';
-import {hotelTypesValidation} from '../../../types-validation/';
+import {Types} from '../../../const';
 
 
-const MainPage = (props) => {
-  const {hotels} = props;
-  const isMainPage = true;
-
+const MainPage = ({hotels}) => {
   return (
     <div className="page page--gray page--main">
-      <Header isMainPage={isMainPage} />
+      <Header page={Types.MAIN_PAGE} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -70,7 +67,7 @@ const MainPage = (props) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <OffersList hotels={hotels} isFavoritePage={false} />
+              <OffersList hotels={hotels} page={Types.MAIN_PAGE} />
             </section >
             <div className="cities__right-section">
               <section className="cities__map map"></section>

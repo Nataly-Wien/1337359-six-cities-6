@@ -3,26 +3,23 @@ import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import Location from '../../location/location';
+import {LocationList} from '../../locations-list/';
+import {Types} from '../../../const';
 
 const FavoritesPage = ({hotels}) => {
-  const isMainPage = false;
-  const cities = Array.from(new Set(hotels.map((item) => item.city.name)));
 
   return (
     <div className="page">
-      <Header isMainPage={isMainPage} />
+      <Header page={Types.NOT_MAIN_PAGE} />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              {cities.map((item) => <Location city={item} key={item} hotels={hotels.filter((it) => it.city.name === item)} />)}
-            </ul>
+            {<LocationList hotels={hotels} page={Types.FAVORITES_PAGE} />}
           </section>
         </div >
       </main >
-      <Footer isMainPage={isMainPage} />
+      <Footer />
     </div >
   );
 };

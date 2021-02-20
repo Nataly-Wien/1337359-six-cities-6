@@ -1,17 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import {NOT_AUTHORIZED_USERNAME} from '../../const';
+import {HeaderTypes} from '../../const';
 
 const Header = (props) => {
-  const {isMainPage} = props;
+  const {page} = props;
 
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link to="/" className={`header__logo-link${isMainPage ? ` header__logo-link--active` : ``}`}>
+            <Link to="/" className={`header__logo-link${HeaderTypes[page].logoClassName}`}>
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
@@ -33,7 +33,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  isMainPage: PropTypes.bool.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default Header;

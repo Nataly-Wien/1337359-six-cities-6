@@ -2,31 +2,23 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation/';
 import Card from '../card/card';
-import {useHistory} from 'react-router-dom';
+import {CardTypes, OfferTypes} from '../../const';
 
-const OffersList = ({hotels, isFavoritePage}) => {
+const OffersList = ({hotels, page}) => {
   const [activeCard, setActiveCard] = useState(-1);
-  const history = useHistory();
-
-  const navigateToRoomPage = (evt) => {
-    evt.preventDefault();
-
-    if (activeCard !== -1) {
-      history.push(`/offer/${activeCard}`);
-    }
-  };
 
   return (
-    <div className={isFavoritePage ? `favorites__places` : `cities__places-list places__list tabs__content`}>
-      {hotels.map((item) => <Card hotel={item} key={item.id} isFavoritePage={isFavoritePage} onMouseEnter={() => setActiveCard(item.id)}
-        onMouseLeave={() => setActiveCard(-1)} onClick={(evt) => navigateToRoomPage(evt)} />)}
+    <div className={OfferTypes[page].offerClassName}>
+      {hotels.map((item) => <Card hotel={item} key={item.id} cardType={CardTypes[page]} onMouseEnter={() => setActiveCard(item.id)}
+        onMouseLeave={() => setActiveCard(-1)}
+      />)}
     </div >
   );
 };
 
 OffersList.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
-  isFavoritePage: PropTypes.bool,
+  page: PropTypes.string.isRequired,
 };
 
 export default OffersList;

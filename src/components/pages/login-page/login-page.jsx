@@ -1,14 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+import {Types} from '../../../const';
 import Header from '../../header/header';
 
 const LoginPage = () => {
-  const isMainPage = false;
-
   return (
     <div className="page page--gray page--login">
-      <Header isMainPage={isMainPage} />
+      <Header page={Types.NOT_MAIN_PAGE} />
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -37,10 +34,5 @@ const LoginPage = () => {
     </div>
   );
 };
-
-// LoginPage.propTypes = {
-//   isAuthorized: PropTypes.bool,
-//   userName: PropTypes.string,
-// };
 
 export default LoginPage;

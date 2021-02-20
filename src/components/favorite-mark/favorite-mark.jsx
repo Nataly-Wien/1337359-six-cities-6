@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FavoriteMark = ({isFavorite = true, isRoomPage = false}) => {
-  const classTerm = isRoomPage ? `property` : `place-card`;
+const FavoriteMark = ({isFavorite = true, markType}) => {
+  const {buttonClassTerm, imgWidth, imgHeight} = markType;
 
   return (
-    <button className={`${classTerm}__bookmark-button button ${isFavorite ? ` ${classTerm}__bookmark-button--active` : ``}`} type="button">
-      <svg className={`${classTerm}__bookmark-icon`} width={isRoomPage ? `31` : `18`} height={isRoomPage ? `33` : `19`}>
+    <button className={`${buttonClassTerm}__bookmark-button button ${isFavorite ? ` ${buttonClassTerm}__bookmark-button--active` : ``}`} type="button">
+      <svg className={`${buttonClassTerm}__bookmark-icon`} width={imgWidth} height={imgHeight}>
         <use xlinkHref="#icon-bookmark"> </use>
       </svg>
       <span className="visually-hidden">{isFavorite ? `In bookmarks` : `To bookmarks`}</span>
@@ -16,7 +16,11 @@ const FavoriteMark = ({isFavorite = true, isRoomPage = false}) => {
 
 FavoriteMark.propTypes = {
   isFavorite: PropTypes.bool,
-  isRoomPage: PropTypes.bool,
+  markType: PropTypes.shape({
+    buttonClassTerm: PropTypes.string,
+    imgWidth: PropTypes.string,
+    imgHeight: PropTypes.string,
+  }).isRequired,
 };
 
 export default FavoriteMark;
