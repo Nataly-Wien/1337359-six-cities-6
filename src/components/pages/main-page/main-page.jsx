@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
-import Card from '../../card/card';
+import OffersList from '../../offers-list/offers-list';
+import {Types} from '../../../const';
 
-const MainPage = (props) => {
-  const {citiesCount} = props;
-  const isMainPage = true;
 
+const MainPage = ({hotels}) => {
   return (
     <div className="page page--gray page--main">
-      <Header isMainPage={isMainPage} />
+      <Header page={Types.MAIN_PAGE} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -68,9 +67,7 @@ const MainPage = (props) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {[...Array(citiesCount)].map((it, i) => <Card key={i} />)}
-              </div >
+              <OffersList hotels={hotels} page={Types.MAIN_PAGE} />
             </section >
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -83,7 +80,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  citiesCount: PropTypes.number.isRequired,
+  hotels: PropTypes.arrayOf(hotelTypesValidation),
 };
 
 export default MainPage;

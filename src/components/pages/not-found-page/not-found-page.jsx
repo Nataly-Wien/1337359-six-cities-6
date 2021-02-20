@@ -1,14 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import {NOT_AUTHORIZED_USERNAME} from '../../../const';
+import {Types} from '../../../const';
 import Header from '../../header/header';
 
 const NotFoundPage = () => {
-  const isMainPage = false;
-
   return (
     <div className="page page--favorites-empty">
-      <Header isMainPage={isMainPage} />
+      <Header page={Types.NOT_MAIN_PAGE} />
       <main className="page__main page__main--favorites page__main--favorites-empty">
         <div className="page__favorites-container container">
           <section className="favorites favorites--empty">
@@ -22,10 +19,5 @@ const NotFoundPage = () => {
     </div>
   );
 };
-
-// NotFoundPage.propTypes = {
-//   isAuthorized: PropTypes.bool,
-//   userName: PropTypes.string,
-// };
 
 export default NotFoundPage;
