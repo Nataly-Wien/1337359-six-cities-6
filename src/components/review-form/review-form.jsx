@@ -7,6 +7,9 @@ const ReviewsForm = ({addReview}) => {
   const [rating, setRating] = useState(`0`);
   const [review, setReview] = useState(``);
 
+  const onRatingChange = (evt) => setRating(evt.target.value);
+  const onReviewChange = (evt) => setReview(evt.target.value);
+
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     addReview(rating, review);
@@ -15,10 +18,10 @@ const ReviewsForm = ({addReview}) => {
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={(evt) => onFormSubmit(evt)}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <RatingList rating={rating} onChange={(evt) => setRating(evt.target.value)} />
-      <ReviewField review={review} onChange={(evt) => setReview(evt.target.value)} />
+      <RatingList rating={rating} onChange={onRatingChange} />
+      <ReviewField review={review} onChange={onReviewChange} />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.

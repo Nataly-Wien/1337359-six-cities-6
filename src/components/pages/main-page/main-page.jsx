@@ -5,7 +5,6 @@ import Header from '../../header/header';
 import OffersList from '../../offers-list/offers-list';
 import {Types} from '../../../const';
 
-
 const MainPage = ({hotels}) => {
   return (
     <div className="page page--gray page--main">

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {FavoriteMarkTypes} from '../../const';
 
-const FavoriteMark = ({isFavorite = true, markType}) => {
-  const {buttonClassTerm, imgWidth, imgHeight} = markType;
+const FavoriteMark = ({isFavorite = true, type}) => {
+  const {buttonClassTerm, imgWidth, imgHeight} = FavoriteMarkTypes[type];
 
   return (
     <button className={`${buttonClassTerm}__bookmark-button button ${isFavorite ? ` ${buttonClassTerm}__bookmark-button--active` : ``}`} type="button">
@@ -16,11 +17,7 @@ const FavoriteMark = ({isFavorite = true, markType}) => {
 
 FavoriteMark.propTypes = {
   isFavorite: PropTypes.bool,
-  markType: PropTypes.shape({
-    buttonClassTerm: PropTypes.string,
-    imgWidth: PropTypes.string,
-    imgHeight: PropTypes.string,
-  }).isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default FavoriteMark;
