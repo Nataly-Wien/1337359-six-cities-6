@@ -2,7 +2,7 @@ import React from 'react';
 import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation';
-import {toUpperCaseFirst} from '../../common';
+import {toUpperCaseFirst, ratingStyle} from '../../common';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';
 import {CardTypes, Types} from '../../const';
@@ -38,7 +38,7 @@ const Card = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating * 20}%`}}></span>
+            <span style={ratingStyle(rating)}></span>
           </div>
         </div>
         <h2 className="place-card__name">

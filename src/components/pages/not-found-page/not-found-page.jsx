@@ -1,6 +1,7 @@
 import React from 'react';
 import {Types} from '../../../const';
 import Header from '../../header/header';
+import Footer from '../../footer/footer';
 
 const NotFoundPage = () => {
   return (
@@ -16,6 +17,7 @@ const NotFoundPage = () => {
           </section>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

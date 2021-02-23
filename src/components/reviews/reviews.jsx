@@ -2,6 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import {reviewTypesValidation} from '../../types-validation/';
+import {ratingStyle} from '../../common';
 import {REVIEWS_AMOUNT} from '../../const';
 
 const Reviews = ({reviews}) => {
@@ -26,7 +27,7 @@ const Reviews = ({reviews}) => {
               <div className="reviews__info">
                 <div className="reviews__rating rating">
                   <div className="reviews__stars rating__stars">
-                    <span style={{width: `${rating * 20}%`}}></span>
+                    <span style={ratingStyle(rating)}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                 </div>

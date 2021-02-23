@@ -1,57 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
+import Cities from '../../cities/cities';
 import OffersList from '../../offers-list/offers-list';
-import {Types} from '../../../const';
+import Map from '../../map/map';
+import {Types, DEFAULT_CITY} from '../../../const';
 
 const MainPage = ({hotels}) => {
+  const [activeCity, setActiveCity] = useState(DEFAULT_CITY);
+
+  const currentHotels = hotels.filter((item) => item.city.name === activeCity);
+
+  const getPoints = () => currentHotels.map((item) => ({id: item.id, location: item.location, title: item.title}));
+
+  const getLocation = () => {
+    return currentHotels.length > 0 ? currentHotels[0].city.location : {};
+  };
+
   return (
     <div className="page page--gray page--main">
       <Header page={Types.MAIN_PAGE} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
+          <Cities setCity={setActiveCity} />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{`${getPoints().length} place${getPoints().length !== 1 ? `s` : ``} to stay in ${activeCity}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">Popular
@@ -66,10 +45,12 @@ const MainPage = ({hotels}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <OffersList hotels={hotels} page={Types.MAIN_PAGE} />
+              <OffersList hotels={currentHotels} page={Types.MAIN_PAGE} />
             </section >
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map city={getLocation()} points={getPoints()} />
+              </section>
             </div>
           </div >
         </div >

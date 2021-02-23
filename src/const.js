@@ -1,13 +1,25 @@
 export const REVIEWS_AMOUNT = 10;
 export const NEAR_PLACES_AMOUNT = 3;
+export const DEFAULT_CITY = `Amsterdam`;
 export const NOT_AUTHORIZED_USERNAME = `Sign in`;
 export const HOTEL_RATING_VALUES = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
+export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 
 export const Routes = {
   HOME: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
   ROOM: `/offer/:id`,
+};
+
+export const LeafletConst = {
+  TITLE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
+  ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+};
+
+export const mapIcon = {
+  iconUrl: `img/pin.svg`,
+  iconSize: [27, 39],
 };
 
 export const Types = {

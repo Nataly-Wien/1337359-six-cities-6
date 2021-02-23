@@ -10,7 +10,7 @@ import Host from '../../host/host';
 import Reviews from '../../reviews/reviews';
 import ReviewsForm from '../../review-form/review-form';
 import OffersList from '../../offers-list/offers-list';
-import {toUpperCaseFirst} from '../../../common';
+import {toUpperCaseFirst, ratingStyle} from '../../../common';
 import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
 
 const RoomPage = ({hotel, hotels, reviews}) => {
@@ -40,7 +40,7 @@ const RoomPage = ({hotel, hotels, reviews}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating * 20}%`}}></span>
+                  <span style={ratingStyle(rating)}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{rating.toString()}</span>
