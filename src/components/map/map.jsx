@@ -1,11 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import {LeafletConst, mapIcon} from '../../const';
+import {LeafletConst, mapIconSize, mapIconUrl, mapIconActiveUrl} from '../../const';
 
 import "leaflet/dist/leaflet.css";
 
-const Map = ({city, points}) => {
+const Map = ({city, points, activeMarker}) => {
   const mapRef = useRef();
 
   useEffect(() => {
@@ -24,7 +24,10 @@ const Map = ({city, points}) => {
       .addTo(mapRef.current);
 
     points.forEach((point) => {
-      const customIcon = leaflet.icon(mapIcon);
+      const customIcon = leaflet.icon({
+        iconUrl: point.id === activeMarker ? mapIconActiveUrl : mapIconUrl,
+        iconSize: mapIconSize,
+      });
 
       leaflet.marker({
         lat: point.location.latitude,
@@ -59,6 +62,7 @@ Map.propTypes = {
       zoom: PropTypes.number.isRequired,
     }).isRequired
   })),
+  activeMarker: PropTypes.number.isRequired,
 };
 
 export default Map;

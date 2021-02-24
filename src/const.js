@@ -14,13 +14,17 @@ export const Routes = {
 
 export const LeafletConst = {
   TITLE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
-  ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  ATTRIBUTION: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
 };
 
-export const mapIcon = {
-  iconUrl: `img/pin.svg`,
-  iconSize: [27, 39],
-};
+// export const mapIcon = {
+//   iconUrl: `img/pin.svg`,
+//   iconSize: [27, 39],
+// };
+
+export const mapIconSize = [27, 39];
+export const mapIconUrl = `img/pin.svg`;
+export const mapIconActiveUrl = `img/pin-active.svg`;
 
 export const Types = {
   MAIN_PAGE: `MAIN_PAGE`,

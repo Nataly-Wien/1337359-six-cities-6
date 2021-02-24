@@ -1,18 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation/';
 import Card from '../card/card';
 import {OfferTypes} from '../../const';
 
-const OffersList = ({hotels, page}) => {
-  const [activeCard, setActiveCard] = useState(-1);
-
-  const onCardHover = (id) => () => setActiveCard(id);
-  const onCardLeave = () => setActiveCard(-1);
-
+const OffersList = ({hotels, page, onCardHover, onCardLeave}) => {
   return (
     <div className={OfferTypes[page].offerClassName}>
-      {hotels.map((item) => <Card hotel={item} key={item.id} page={page} onMouseEnter={onCardHover(item.id)} onMouseLeave={onCardLeave} />)}
+      {hotels.map((item) => <Card hotel={item} key={item.id} page={page} onCardHover={onCardHover} onCardLeave={onCardLeave} />)}
     </div >
   );
 };
@@ -20,6 +15,8 @@ const OffersList = ({hotels, page}) => {
 OffersList.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   page: PropTypes.string.isRequired,
+  onCardHover: PropTypes.func,
+  onCardLeave: PropTypes.func,
 };
 
 export default OffersList;
