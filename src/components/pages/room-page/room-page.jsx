@@ -10,14 +10,20 @@ import Host from '../../host/host';
 import Reviews from '../../reviews/reviews';
 import ReviewsForm from '../../review-form/review-form';
 import OffersList from '../../offers-list/offers-list';
-import {toUpperCaseFirst} from '../../../common';
-import {FavoriteMarkTypes, PremiumMarkTypes, Types, NEAR_PLACES_AMOUNT} from '../../../const';
+import {toUpperCaseFirst, ratingStyle} from '../../../common';
+import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
 
 const RoomPage = ({hotel, hotels, reviews}) => {
   const {isPremium, previewImage, images, price, isFavorite, rating, title, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
   const pictures = images.slice(0, 5);
   pictures.unshift(previewImage);
+
+  const nearPlacesHotels = hotels.filter((item) => item.id !== hotel.id).slice(0, NEAR_PLACES_AMOUNT);
+
+  const addReviewHandler = (hotelRating, review) => {
+    console.log(hotelRating, review);
+  };
 
   return (
     <div className="page">
@@ -27,14 +33,14 @@ const RoomPage = ({hotel, hotels, reviews}) => {
           <ImageList pictures={pictures} />
           <div className="property__container container">
             <div className="property__wrapper">
-              {isPremium && <PremiumMark markType={PremiumMarkTypes[Types.ROOM_PAGE]} />}
+              {isPremium && <PremiumMark type={Types.ROOM_PAGE} />}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
-                <FavoriteMark isFavorite={isFavorite} markType={FavoriteMarkTypes[Types.ROOM_PAGE]} />
+                <FavoriteMark isFavorite={isFavorite} type={Types.ROOM_PAGE} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating * 20}%`}}></span>
+                  <span style={ratingStyle(rating)}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{rating.toString()}</span>
@@ -53,9 +59,8 @@ const RoomPage = ({hotel, hotels, reviews}) => {
               <RoomInside goods={goods} />
               <Host host={host} description={description} />
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <Reviews reviews={reviews} />
-                <ReviewsForm addReview={() => { }} />
+                <ReviewsForm addReview={addReviewHandler} />
               </section>
             </div>
           </div>
@@ -64,7 +69,7 @@ const RoomPage = ({hotel, hotels, reviews}) => {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <OffersList hotels={hotels.slice(0, NEAR_PLACES_AMOUNT)} page={Types.ROOM_PAGE} />
+            <OffersList hotels={nearPlacesHotels} page={Types.ROOM_PAGE} />
           </section>
         </div>
       </main>

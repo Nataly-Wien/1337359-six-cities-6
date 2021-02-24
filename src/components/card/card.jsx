@@ -2,27 +2,27 @@ import React from 'react';
 import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation';
-import {toUpperCaseFirst} from '../../common';
+import {toUpperCaseFirst, ratingStyle} from '../../common';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';
-import {PremiumMarkTypes, FavoriteMarkTypes, Types} from '../../const';
+import {CardTypes, Types} from '../../const';
 
 const Card = (props) => {
-  const {cardType, hotel, onMouseEnter, onMouseLeave} = props;
+  const {page, hotel, onMouseEnter, onMouseLeave} = props;
   const {isPremium, previewImage, price, isFavorite, rating, title, type, id} = hotel;
-  const {articleClassName, imgWrapperClassName, cardInfoClassName, hasPremiumMark, imgWidth, imgHeight} = cardType;
+  const {articleClassName, imgWrapperClassName, cardInfoClassName, hasPremiumMark, imgWidth, imgHeight} = CardTypes[page];
 
   const history = useHistory();
 
-  const navigateToRoomPage = (evt) => {
+  const onCardClickHandler = (evt) => {
     evt.preventDefault();
     history.push(`/offer/${id}`);
   };
 
   return (
     <article className={`${articleClassName} place-card`}
-      onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={(evt) => navigateToRoomPage(evt)}>
-      {isPremium && hasPremiumMark && <PremiumMark markType={PremiumMarkTypes[Types.CARD]} />}
+      onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onCardClickHandler}>
+      {isPremium && hasPremiumMark && <PremiumMark type={Types.CARD} />}
       <div className={`${imgWrapperClassName} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt="Place image" />
@@ -34,11 +34,11 @@ const Card = (props) => {
             <b className="place-card__price-value">&euro;{price.toString()}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <FavoriteMark isFavorite={isFavorite} markType={FavoriteMarkTypes[Types.CARD]} />
+          <FavoriteMark isFavorite={isFavorite} type={Types.CARD} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating * 20}%`}}></span>
+            <span style={ratingStyle(rating)}></span>
           </div>
         </div>
         <h2 className="place-card__name">
@@ -54,14 +54,7 @@ Card.propTypes = {
   hotel: hotelTypesValidation,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  cardType: PropTypes.shape({
-    articleClassName: PropTypes.string,
-    imgWrapperClassName: PropTypes.string,
-    cardInfoClassName: PropTypes.string,
-    hasPremiumMark: PropTypes.bool,
-    imgWidth: PropTypes.string,
-    imgHeight: PropTypes.string,
-  }).isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 

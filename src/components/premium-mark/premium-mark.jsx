@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {PremiumMarkTypes} from '../../const';
 
-const PremiumMark = ({markType}) => {
+const PremiumMark = ({type}) => {
   return (
-    <div className={markType.markClassName}>
+    <div className={PremiumMarkTypes[type].markClassName}>
       <span>Premium</span>
     </div>
   );
@@ -11,9 +12,7 @@ const PremiumMark = ({markType}) => {
 
 PremiumMark.propTypes = {
   isRoomPage: PropTypes.bool,
-  markType: PropTypes.shape({
-    markClassName: PropTypes.string,
-  })
+  type: PropTypes.string,
 };
 
 export default PremiumMark;
