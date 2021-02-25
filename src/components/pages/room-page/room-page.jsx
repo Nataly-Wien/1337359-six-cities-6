@@ -9,17 +9,21 @@ import RoomInside from '../../room-inside/room-inside';
 import Host from '../../host/host';
 import Reviews from '../../reviews/reviews';
 import ReviewsForm from '../../review-form/review-form';
+import Map from '../../map/map';
 import OffersList from '../../offers-list/offers-list';
-import {toUpperCaseFirst, ratingStyle} from '../../../common';
+import {toUpperCaseFirst, ratingStyle, getPoints} from '../../../common';
 import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
 
 const RoomPage = ({hotel, hotels, reviews}) => {
-  const {isPremium, previewImage, images, price, isFavorite, rating, title, type, bedrooms, maxAdults, goods, host, description} = hotel;
+  const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
   const pictures = images.slice(0, 5);
   pictures.unshift(previewImage);
 
-  const nearPlacesHotels = hotels.filter((item) => item.id !== hotel.id).slice(0, NEAR_PLACES_AMOUNT);
+  const nearPlacesHotels = hotels.filter((item) => item.city.name === hotel.city.name && item.id !== hotel.id).slice(0, NEAR_PLACES_AMOUNT);
+
+  const mapMarkers = getPoints(nearPlacesHotels);
+  mapMarkers.unshift({id, location, title});
 
   const addReviewHandler = (hotelRating, review) => {
     console.log(hotelRating, review);
@@ -64,7 +68,9 @@ const RoomPage = ({hotel, hotels, reviews}) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map city={city.location} points={mapMarkers} activeMarker={id} />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

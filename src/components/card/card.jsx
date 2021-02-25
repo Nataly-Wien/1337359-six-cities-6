@@ -8,20 +8,20 @@ import FavoriteMark from '../favorite-mark/favorite-mark';
 import {CardTypes, Types} from '../../const';
 
 const Card = (props) => {
-  const {page, hotel, onMouseEnter, onMouseLeave} = props;
+  const {page, hotel, onCardHover = () => { }, onCardLeave = () => { }} = props;
   const {isPremium, previewImage, price, isFavorite, rating, title, type, id} = hotel;
   const {articleClassName, imgWrapperClassName, cardInfoClassName, hasPremiumMark, imgWidth, imgHeight} = CardTypes[page];
 
   const history = useHistory();
 
-  const onCardClickHandler = (evt) => {
+  const handleCardClick = (evt) => {
     evt.preventDefault();
     history.push(`/offer/${id}`);
   };
 
   return (
     <article className={`${articleClassName} place-card`}
-      onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onCardClickHandler}>
+      onMouseEnter={() => onCardHover(id)} onMouseLeave={onCardLeave} onClick={handleCardClick}>
       {isPremium && hasPremiumMark && <PremiumMark type={Types.CARD} />}
       <div className={`${imgWrapperClassName} place-card__image-wrapper`}>
         <a href="#">
@@ -52,8 +52,8 @@ const Card = (props) => {
 
 Card.propTypes = {
   hotel: hotelTypesValidation,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func,
+  onCardLeave: PropTypes.func,
   page: PropTypes.string.isRequired,
 };
 
