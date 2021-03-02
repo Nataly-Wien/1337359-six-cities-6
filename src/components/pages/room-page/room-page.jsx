@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation, reviewTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
@@ -13,8 +14,11 @@ import Map from '../../map/map';
 import OffersList from '../../offers-list/offers-list';
 import {toUpperCaseFirst, ratingStyle, getPoints} from '../../../common';
 import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
+import reviews from '../../../mocks/reviews';
 
-const RoomPage = ({hotel, hotels, reviews}) => {
+const RoomPage = ({hotels, match}) => {
+
+  const hotel = hotels.find((item) => item.id.toString() === match.params.id);
   const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
   const pictures = images.slice(0, 5);
@@ -23,7 +27,7 @@ const RoomPage = ({hotel, hotels, reviews}) => {
   const nearPlacesHotels = hotels.filter((item) => item.city.name === hotel.city.name && item.id !== hotel.id).slice(0, NEAR_PLACES_AMOUNT);
 
   const mapMarkers = getPoints(nearPlacesHotels);
-  mapMarkers.unshift({id, location, title});
+  mapMarkers.push({id, location, title});
 
   const addReviewHandler = (hotelRating, review) => {
     console.log(hotelRating, review);
@@ -84,9 +88,13 @@ const RoomPage = ({hotel, hotels, reviews}) => {
 };
 
 RoomPage.propTypes = {
-  hotel: hotelTypesValidation,
   hotels: PropTypes.arrayOf(hotelTypesValidation),
-  reviews: PropTypes.arrayOf(reviewTypesValidation),
+  match: PropTypes.object,
+  reviews: PropTypes.arrayOf(reviewTypesValidation), // ?
 };
 
-export default RoomPage;
+const mapStateToProps = ({hotels}) => ({
+  hotels,
+});
+
+export default connect(mapStateToProps, null)(RoomPage);

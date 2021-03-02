@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
 import Cities from '../../cities/cities';
 import OffersList from '../../offers-list/offers-list';
 import Map from '../../map/map';
-import {Types, DEFAULT_CITY} from '../../../const';
+import {Types} from '../../../const';
 import {getPoints} from '../../../common';
 
-const MainPage = ({hotels}) => {
-  const [activeCity, setActiveCity] = useState(DEFAULT_CITY);
+const MainPage = ({hotels, city}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
-  const currentHotels = hotels.filter((item) => item.city.name === activeCity);
+  const currentHotels = hotels.filter((item) => item.city.name === city);
 
   const getLocation = () => {
     return currentHotels.length > 0 ? currentHotels[0].city.location : {};
@@ -27,13 +27,13 @@ const MainPage = ({hotels}) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <Cities setCity={setActiveCity} />
+          <Cities />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${currentHotels.length} place${currentHotels.length !== 1 ? `s` : ``} to stay in ${activeCity}`}</b>
+              <b className="places__found">{`${currentHotels.length} place${currentHotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">Popular
@@ -64,6 +64,12 @@ const MainPage = ({hotels}) => {
 
 MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
+  city: PropTypes.string.isRequired,
 };
 
-export default MainPage;
+const mapStateToProps = ({hotels, city}) => ({
+  hotels,
+  city,
+});
+
+export default connect(mapStateToProps, null)(MainPage);

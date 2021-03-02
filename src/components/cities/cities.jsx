@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
-import {CITIES, DEFAULT_CITY} from '../../const';
+import {CITIES} from '../../const';
 
-const Cities = ({setCity}) => {
-  const [activeCity, setActiveCity] = useState(DEFAULT_CITY);
+const Cities = ({activeCity, setCity}) => {
 
   const onLocationClick = (evt, city) => {
     evt.preventDefault();
-    setActiveCity(city);
     setCity(city);
   };
 
@@ -31,6 +31,17 @@ const Cities = ({setCity}) => {
 
 Cities.propTypes = {
   setCity: PropTypes.func.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
 
-export default Cities;
+const mapStateToProps = (state) => ({
+  activeCity: state.city,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCity: (city) => dispatch(ActionCreator.setCity(city)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cities);
