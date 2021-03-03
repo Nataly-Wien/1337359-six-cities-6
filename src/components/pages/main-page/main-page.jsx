@@ -15,10 +15,8 @@ const MainPage = ({hotels, city}) => {
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
-  const currentHotels = hotels.filter((item) => item.city.name === city);
-
   const getLocation = () => {
-    return currentHotels.length > 0 ? currentHotels[0].city.location : {};
+    return hotels.length > 0 ? hotels[0].city.location : {};
   };
 
   return (
@@ -33,7 +31,7 @@ const MainPage = ({hotels, city}) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${currentHotels.length} place${currentHotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
+              <b className="places__found">{`${hotels.length} place${hotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">Popular
@@ -48,11 +46,11 @@ const MainPage = ({hotels, city}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <OffersList hotels={currentHotels} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
+              <OffersList hotels={hotels} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
             </section >
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={getLocation()} points={getPoints(currentHotels)} activeMarker={activeCard} />
+                <Map city={getLocation()} points={getPoints(hotels)} activeMarker={activeCard} />
               </section>
             </div>
           </div >
@@ -68,7 +66,7 @@ MainPage.propTypes = {
 };
 
 const mapStateToProps = ({hotels, city}) => ({
-  hotels,
+  hotels: hotels.filter((item) => item.city.name === city),
   city,
 });
 

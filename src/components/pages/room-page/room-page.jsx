@@ -9,16 +9,15 @@ import FavoriteMark from '../../favorite-mark/favorite-mark';
 import RoomInside from '../../room-inside/room-inside';
 import Host from '../../host/host';
 import Reviews from '../../reviews/reviews';
-import ReviewsForm from '../../review-form/review-form';
+// import ReviewsForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import OffersList from '../../offers-list/offers-list';
 import {toUpperCaseFirst, ratingStyle, getPoints} from '../../../common';
 import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
 import reviews from '../../../mocks/reviews';
 
-const RoomPage = ({hotels, match}) => {
+const RoomPage = ({hotels, hotel}) => {
 
-  const hotel = hotels.find((item) => item.id.toString() === match.params.id);
   const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
   const pictures = images.slice(0, 5);
@@ -29,9 +28,8 @@ const RoomPage = ({hotels, match}) => {
   const mapMarkers = getPoints(nearPlacesHotels);
   mapMarkers.push({id, location, title});
 
-  const addReviewHandler = (hotelRating, review) => {
-    console.log(hotelRating, review);
-  };
+  // const addReviewHandler = (hotelRating, review) => {  //
+  // };
 
   return (
     <div className="page">
@@ -68,7 +66,7 @@ const RoomPage = ({hotels, match}) => {
               <Host host={host} description={description} />
               <section className="property__reviews reviews">
                 <Reviews reviews={reviews} />
-                <ReviewsForm addReview={addReviewHandler} />
+                {/* <ReviewsForm addReview={addReviewHandler} /> */}
               </section>
             </div>
           </div>
@@ -89,12 +87,13 @@ const RoomPage = ({hotels, match}) => {
 
 RoomPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
-  match: PropTypes.object,
+  hotel: hotelTypesValidation,
   reviews: PropTypes.arrayOf(reviewTypesValidation), // ?
 };
 
-const mapStateToProps = ({hotels}) => ({
+const mapStateToProps = ({hotels}, {match}) => ({
   hotels,
+  hotel: hotels.find((item) => item.id.toString() === match.params.id)
 });
 
 export default connect(mapStateToProps, null)(RoomPage);
