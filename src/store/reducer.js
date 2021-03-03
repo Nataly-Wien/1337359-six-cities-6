@@ -4,6 +4,7 @@ import hotels from '../mocks/hotels';
 
 const initialState = {
   city: CITIES[0],
+  sort: 0,
   hotels,
 };
 
@@ -13,6 +14,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         city: action.payload,
+      };
+
+    case ActionType.SET_SORT:
+      return {
+        ...state,
+        sort: action.payload,
       };
   }
 

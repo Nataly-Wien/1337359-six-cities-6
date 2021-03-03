@@ -9,7 +9,7 @@ import FavoriteMark from '../../favorite-mark/favorite-mark';
 import RoomInside from '../../room-inside/room-inside';
 import Host from '../../host/host';
 import Reviews from '../../reviews/reviews';
-// import ReviewsForm from '../../review-form/review-form';
+import ReviewsForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import OffersList from '../../offers-list/offers-list';
 import {toUpperCaseFirst, ratingStyle, getPoints} from '../../../common';
@@ -30,6 +30,7 @@ const RoomPage = ({hotels, hotel}) => {
 
   // const addReviewHandler = (hotelRating, review) => {  //
   // };
+  const addReviewHandler = () => { };
 
   return (
     <div className="page">
@@ -66,7 +67,7 @@ const RoomPage = ({hotels, hotel}) => {
               <Host host={host} description={description} />
               <section className="property__reviews reviews">
                 <Reviews reviews={reviews} />
-                {/* <ReviewsForm addReview={addReviewHandler} /> */}
+                <ReviewsForm addReview={addReviewHandler} />
               </section>
             </div>
           </div>
