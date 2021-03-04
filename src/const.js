@@ -3,13 +3,24 @@ export const NEAR_PLACES_AMOUNT = 3;
 export const NOT_AUTHORIZED_USERNAME = `Sign in`;
 export const HOTEL_RATING_VALUES = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
-export const SORTS = [`Popular`, `Price`, `Price: high to low`, `Top rated first`];
 
-export const SORT_RULES = [
-  (a, b) => (a - b) * 0,
-  (a, b) => a.price - b.price,
-  (a, b) => b.price - a.price,
-  (a, b) => b.rating - a.rating,
+export const SORTS = [
+  {
+    type: `Popular`,
+    rule: (a, b) => (a - b) * 0,
+  },
+  {
+    type: `Price`,
+    rule: (a, b) => a.price - b.price,
+  },
+  {
+    type: `Price: high to low`,
+    rule: (a, b) => b.price - a.price,
+  },
+  {
+    type: `Top rated first`,
+    rule: (a, b) => b.rating - a.rating,
+  }
 ];
 
 export const Routes = {

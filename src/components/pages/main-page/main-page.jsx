@@ -7,7 +7,7 @@ import Cities from '../../cities/cities';
 import SortList from '../../sort-list/sort-list';
 import OffersList from '../../offers-list/offers-list';
 import Map from '../../map/map';
-import {Types, SORT_RULES} from '../../../const';
+import {Types, SORTS} from '../../../const';
 import {getPoints} from '../../../common';
 
 const MainPage = ({hotels, city, sort}) => {
@@ -36,7 +36,7 @@ const MainPage = ({hotels, city, sort}) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{`${hotels.length} place${hotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
               <SortList />
-              <OffersList hotels={hotels.sort(SORT_RULES[sort])} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
+              <OffersList hotels={hotels.sort(SORTS[sort].rule)} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
             </section >
             <div className="cities__right-section">
               <section className="cities__map map">
