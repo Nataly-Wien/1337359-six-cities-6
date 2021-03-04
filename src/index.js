@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import hotels from './mocks/hotels';
-import reviews from './mocks/reviews';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {reducer} from './store/reducer';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
 
 // const Setting = {
 //   CITIES_COUNT: 5,
 // };
-ReactDOM.render(<App hotels={hotels} reviews={reviews} />, document.querySelector(`#root`));
+const store = createStore(reducer, composeWithDevTools());
+
+ReactDOM.render(<Provider store={store}>
+  <App />
+</Provider>, document.querySelector(`#root`)
+);

@@ -1,25 +1,26 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
 import Cities from '../../cities/cities';
+import SortList from '../../sort-list/sort-list';
 import OffersList from '../../offers-list/offers-list';
 import Map from '../../map/map';
-import {Types, DEFAULT_CITY} from '../../../const';
+import {Types, SORTS} from '../../../const';
 import {getPoints} from '../../../common';
 
-const MainPage = ({hotels}) => {
-  const [activeCity, setActiveCity] = useState(DEFAULT_CITY);
+const MainPage = ({hotels, city, sort}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
-  const currentHotels = hotels.filter((item) => item.city.name === activeCity);
-
   const getLocation = () => {
-    return currentHotels.length > 0 ? currentHotels[0].city.location : {};
+    return hotels.length > 0 ? hotels[0].city.location : {};
   };
+
+  const mapMarkers = getPoints(hotels);
 
   return (
     <div className="page page--gray page--main">
@@ -27,32 +28,19 @@ const MainPage = ({hotels}) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <Cities setCity={setActiveCity} />
+          <Cities />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${currentHotels.length} place${currentHotels.length !== 1 ? `s` : ``} to stay in ${activeCity}`}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-              </form>
-              <OffersList hotels={currentHotels} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
+              <b className="places__found">{`${hotels.length} place${hotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
+              <SortList />
+              <OffersList hotels={hotels.sort(SORTS[sort].rule)} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
             </section >
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={getLocation()} points={getPoints(currentHotels)} activeMarker={activeCard} />
+                <Map city={getLocation()} points={mapMarkers} activeMarker={activeCard} />
               </section>
             </div>
           </div >
@@ -64,6 +52,14 @@ const MainPage = ({hotels}) => {
 
 MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
+  city: PropTypes.string.isRequired,
+  sort: PropTypes.number.isRequired,
 };
 
-export default MainPage;
+const mapStateToProps = ({hotels, city, sort}) => ({
+  hotels: hotels.filter((item) => item.city.name === city),
+  city,
+  sort,
+});
+
+export default connect(mapStateToProps, null)(MainPage);

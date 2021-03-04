@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import {LeafletConst, mapIconSize, mapIconUrl, mapIconActiveUrl} from '../../const';
+import {LeafletConst, MAP_ICON, MAP_ICON_ACTIVE} from '../../const';
 
 import "leaflet/dist/leaflet.css";
 
@@ -24,17 +24,16 @@ const Map = ({city, points, activeMarker}) => {
       .addTo(mapRef.current);
 
     points.forEach((point) => {
-      const customIcon = leaflet.icon({
-        iconUrl: point.id === activeMarker ? mapIconActiveUrl : mapIconUrl,
-        iconSize: mapIconSize,
-      });
+      const customIcon = point.id === activeMarker ? MAP_ICON_ACTIVE : MAP_ICON;
 
-      leaflet.marker({
-        lat: point.location.latitude,
-        lng: point.location.longitude,
-      }, {
-        icon: customIcon
-      })
+      leaflet
+        .marker({
+          lat: point.location.latitude,
+          lng: point.location.longitude,
+        }, {
+          icon: leaflet.icon(customIcon),
+          title: point.title,
+        })
         .addTo(mapRef.current)
         .bindPopup(point.title);
     });

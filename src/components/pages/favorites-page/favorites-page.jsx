@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/';
 import Header from '../../header/header';
@@ -28,4 +29,8 @@ FavoritesPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
 };
 
-export default FavoritesPage;
+const mapStateToProps = ({hotels}) => ({
+  hotels: hotels.filter((item) => item.isFavorite),
+});
+
+export default connect(mapStateToProps, null)(FavoritesPage);

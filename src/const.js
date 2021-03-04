@@ -1,9 +1,27 @@
 export const REVIEWS_AMOUNT = 10;
 export const NEAR_PLACES_AMOUNT = 3;
-export const DEFAULT_CITY = `Amsterdam`;
 export const NOT_AUTHORIZED_USERNAME = `Sign in`;
 export const HOTEL_RATING_VALUES = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
+
+export const SORTS = [
+  {
+    type: `Popular`,
+    rule: (a, b) => (a - b) * 0,
+  },
+  {
+    type: `Price`,
+    rule: (a, b) => a.price - b.price,
+  },
+  {
+    type: `Price: high to low`,
+    rule: (a, b) => b.price - a.price,
+  },
+  {
+    type: `Top rated first`,
+    rule: (a, b) => b.rating - a.rating,
+  }
+];
 
 export const Routes = {
   HOME: `/`,
@@ -17,14 +35,15 @@ export const LeafletConst = {
   ATTRIBUTION: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
 };
 
-// export const mapIcon = {
-//   iconUrl: `img/pin.svg`,
-//   iconSize: [27, 39],
-// };
+export const MAP_ICON = {
+  iconUrl: `img/pin.svg`,
+  iconSize: [27, 39],
+};
 
-export const mapIconSize = [27, 39];
-export const mapIconUrl = `img/pin.svg`;
-export const mapIconActiveUrl = `img/pin-active.svg`;
+export const MAP_ICON_ACTIVE = {
+  iconUrl: `img/pin-active.svg`,
+  iconSize: [27, 39],
+};
 
 export const Types = {
   MAIN_PAGE: `MAIN_PAGE`,
