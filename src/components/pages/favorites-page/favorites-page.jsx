@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../../types-validation/';
+import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import {LocationList} from '../../locations-list/';
+import LocationList from '../../locations-list/locations-list';
 import {Types} from '../../../const';
 
 const FavoritesPage = ({hotels}) => {

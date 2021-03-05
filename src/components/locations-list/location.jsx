@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../types-validation';
+import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
 import OffersList from '../offers-list/offers-list';
 
 const Location = ({hotels, city, page}) => {

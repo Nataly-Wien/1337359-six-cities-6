@@ -13,4 +13,4 @@ const reviewTypesValidation = PropTypes.shape({
   date: PropTypes.string.isRequired,
 }).isRequired;
 
-export default reviewTypesValidation;
+export {reviewTypesValidation};

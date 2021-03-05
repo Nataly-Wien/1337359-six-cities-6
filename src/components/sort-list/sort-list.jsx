@@ -4,17 +4,14 @@ import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
 import {SORTS} from '../../const';
 
-const SortList = ({activeSort, dispatch}) => {
+const SortList = ({activeSort, setActiveSort}) => {
   const [hovering, setHovering] = useState(false);
-
-  const setActiveSort = (i) => {
-    dispatch(ActionCreator.setSort(i));
-  };
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption" >Sort by </span>
-      <span className="places__sorting-type" tabIndex="0" onMouseEnter={(() => setHovering(true))} >{SORTS[activeSort].type}
+      <span className="places__sorting-type" tabIndex="0" onMouseEnter={() => setHovering(true)}
+        onFocus={() => setHovering(true)}>{SORTS[activeSort].type}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -29,11 +26,15 @@ const SortList = ({activeSort, dispatch}) => {
 
 SortList.propTypes = {
   activeSort: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  setActiveSort: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   activeSort: state.sort,
 });
 
-export default connect(mapStateToProps, null)(SortList);
+const mapDispatchToProps = (dispatch) => ({
+  setActiveSort: (sort) => dispatch(ActionCreator.setSort(sort)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SortList);

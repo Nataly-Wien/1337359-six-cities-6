@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import {reviewTypesValidation} from '../../types-validation/';
+import {reviewTypesValidation} from '../../types-validation/review-types-validation';
 import {ratingStyle} from '../../common';
 import {REVIEWS_AMOUNT} from '../../const';
 

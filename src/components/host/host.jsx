@@ -1,5 +1,5 @@
 import React from 'react';
-import {hostTypesValidation} from '../../types-validation';
+import {hostTypesValidation} from '../../types-validation/hotel-types-validation';
 
 const Host = ({host, description}) => {
   const {name, isPro, avatarUrl} = host;

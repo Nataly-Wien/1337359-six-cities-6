@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../../types-validation/';
+import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import Header from '../../header/header';
 import Cities from '../../cities/cities';
 import SortList from '../../sort-list/sort-list';
