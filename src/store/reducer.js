@@ -1,11 +1,14 @@
 import {ActionType} from './action';
-import {CITIES} from '../const';
-import hotels from '../mocks/hotels';
+import {CITIES, AuthorizationStatus} from '../const';
+// import hotels from '../mocks/hotels';
 
 const initialState = {
   city: CITIES[0],
   sort: 0,
-  hotels,
+  // hotels,
+  hotels: [],
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +23,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sort: action.payload,
+      };
+
+    case ActionType.LOAD_HOTELS:
+      return {
+        ...state,
+        hotels: action.payload,
+        isDataLoaded: true,
+      };
+
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
       };
   }
 
