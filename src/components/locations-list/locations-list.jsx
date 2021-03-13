@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../types-validation';
-import {Location} from './index';
+import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
+import Location from './location';
 
 const LocationList = ({hotels, page}) => {
   const cities = Array.from(new Set(hotels.map((item) => item.city.name)));

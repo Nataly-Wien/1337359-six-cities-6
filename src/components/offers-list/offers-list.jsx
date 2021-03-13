@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../types-validation/';
+import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
 import Card from '../card/card';
 import {OfferTypes} from '../../const';
 

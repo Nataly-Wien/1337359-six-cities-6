@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation, reviewTypesValidation} from '../../../types-validation/';
+import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
+import {reviewTypesValidation} from '../../../types-validation/review-types-validation';
 import Header from '../../header/header';
 import ImageList from '../../image-list/image-list';
 import PremiumMark from '../../premium-mark/premium-mark';

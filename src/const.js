@@ -30,6 +30,16 @@ export const Routes = {
   ROOM: `/offer/:id`,
 };
 
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const Url = {
+  HOTELS: `/hotels`,
+  LOGIN: `/login`,
+};
+
 export const LeafletConst = {
   TITLE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   ATTRIBUTION: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`

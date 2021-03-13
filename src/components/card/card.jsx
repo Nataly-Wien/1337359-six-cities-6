@@ -1,7 +1,7 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../types-validation';
+import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
 import {toUpperCaseFirst, ratingStyle} from '../../common';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';

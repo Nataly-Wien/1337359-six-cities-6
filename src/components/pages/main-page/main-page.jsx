@@ -1,49 +1,40 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {hotelTypesValidation} from '../../../types-validation/';
+import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
+import {fetchHotels} from '../../../store/api-actions';
 import Header from '../../header/header';
 import Cities from '../../cities/cities';
-import SortList from '../../sort-list/sort-list';
-import OffersList from '../../offers-list/offers-list';
-import Map from '../../map/map';
-import {Types, SORTS} from '../../../const';
-import {getPoints} from '../../../common';
+import PlacesEmpty from '../../places/places-empty';
+import Places from '../../places/places';
+import LoadWrapper from '../../load-wrapper/load-wrapper;';
+import {Types} from '../../../const';
 
-const MainPage = ({hotels, city, sort}) => {
+const MainPage = ({hotels, city, sort, isDataLoaded, onLoadData}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
-  const getLocation = () => {
-    return hotels.length > 0 ? hotels[0].city.location : {};
-  };
-
-  const mapMarkers = getPoints(hotels);
+  useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData();
+    }
+  }, [isDataLoaded]);
 
   return (
     <div className="page page--gray page--main">
       <Header page={Types.MAIN_PAGE} />
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index${hotels.length === 0 ? ` page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <Cities />
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${hotels.length} place${hotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
-              <SortList />
-              <OffersList hotels={hotels.sort(SORTS[sort].rule)} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
-            </section >
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map city={getLocation()} points={mapMarkers} activeMarker={activeCard} />
-              </section>
-            </div>
-          </div >
+          <LoadWrapper isDataLoaded={isDataLoaded}>
+            {hotels.length === 0 ? <PlacesEmpty city={city} /> :
+              <Places hotels={hotels} city={city} sort={sort} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
+          </LoadWrapper>
         </div >
       </main>
     </div>
@@ -54,12 +45,19 @@ MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   city: PropTypes.string.isRequired,
   sort: PropTypes.number.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({hotels, city, sort}) => ({
+const mapStateToProps = ({hotels, city, sort, isDataLoaded}) => ({
   hotels: hotels.filter((item) => item.city.name === city),
   city,
   sort,
+  isDataLoaded,
 });
 
-export default connect(mapStateToProps, null)(MainPage);
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData: () => dispatch(fetchHotels()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
