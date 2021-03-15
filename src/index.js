@@ -9,9 +9,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
 import {ActionCreator} from './store/action';
 import {checkAuth} from './store/api-actions';
-import {AuthorizationStatus} from './const';
+import {AuthorizationStatus, emptyUser} from './const';
 
-const api = createAPI(() => store.dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH)));
+const api = createAPI(() => store.dispatch(ActionCreator.requiredAuthorization({status: AuthorizationStatus.NO_AUTH, user: emptyUser})));
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 

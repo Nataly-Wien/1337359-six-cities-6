@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import LocationList from '../../locations-list/locations-list';
+import FavoritePlaces from '../../favorite-places/favorite_places';
+import FavoriteEmpty from '../../favorite-places/favorite-empty';
 import {Types} from '../../../const';
 
 const FavoritesPage = ({hotels}) => {
@@ -14,10 +15,7 @@ const FavoritesPage = ({hotels}) => {
       <Header page={Types.NOT_MAIN_PAGE} />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            {<LocationList hotels={hotels} page={Types.FAVORITES_PAGE} />}
-          </section>
+          {hotels.length === 0 ? <FavoriteEmpty /> : <FavoritePlaces hotels={hotels} />}
         </div >
       </main >
       <Footer />

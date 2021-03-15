@@ -14,10 +14,10 @@ import ReviewsForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import OffersList from '../../offers-list/offers-list';
 import {toUpperCaseFirst, ratingStyle, getPoints} from '../../../common';
-import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
+import {Types, NEAR_PLACES_AMOUNT, AuthorizationStatus} from '../../../const';
 import reviews from '../../../mocks/reviews';
 
-const RoomPage = ({hotels, hotel}) => {
+const RoomPage = ({hotels, hotel, authorizationStatus}) => {
 
   const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
@@ -68,7 +68,7 @@ const RoomPage = ({hotels, hotel}) => {
               <Host host={host} description={description} />
               <section className="property__reviews reviews">
                 <Reviews reviews={reviews} />
-                <ReviewsForm addReview={addReviewHandler} />
+                {authorizationStatus === AuthorizationStatus.AUTH && <ReviewsForm addReview={addReviewHandler} />}
               </section>
             </div>
           </div>
@@ -90,12 +90,14 @@ const RoomPage = ({hotels, hotel}) => {
 RoomPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   hotel: hotelTypesValidation,
-  reviews: PropTypes.arrayOf(reviewTypesValidation), // ?
+  reviews: PropTypes.arrayOf(reviewTypesValidation),
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({hotels}, {match}) => ({
+const mapStateToProps = ({hotels, authorizationStatus}, {match}) => ({
   hotels,
-  hotel: hotels.find((item) => item.id.toString() === match.params.id)
+  hotel: hotels.find((item) => item.id.toString() === match.params.id),
+  authorizationStatus,
 });
 
 export default connect(mapStateToProps, null)(RoomPage);
