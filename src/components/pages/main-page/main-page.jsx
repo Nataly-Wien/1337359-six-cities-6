@@ -7,7 +7,7 @@ import Header from '../../header/header';
 import Cities from '../../cities/cities';
 import PlacesEmpty from '../../places/places-empty';
 import Places from '../../places/places';
-import LoadWrapper from '../../load-wrapper/load-wrapper;';
+import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {Types} from '../../../const';
 
 const MainPage = ({hotels, city, sort, isDataLoaded, onLoadData}) => {

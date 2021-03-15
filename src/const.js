@@ -1,6 +1,7 @@
 export const REVIEWS_AMOUNT = 10;
 export const NEAR_PLACES_AMOUNT = 3;
 export const NOT_AUTHORIZED_USERNAME = `Sign in`;
+export const EMPTY_AVATAR_URL = `../img/avatar.svg`;
 export const HOTEL_RATING_VALUES = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 
@@ -35,9 +36,19 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const emptyUser = {
+  id: -1,
+  email: ``,
+  password: ``,
+  name: ``,
+  avatarUrl: EMPTY_AVATAR_URL,
+  isPro: false,
+};
+
 export const Url = {
   HOTELS: `/hotels`,
   LOGIN: `/login`,
+  LOGOUT: `/logout`,
 };
 
 export const LeafletConst = {

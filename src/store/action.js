@@ -3,6 +3,7 @@ export const ActionType = {
   SET_SORT: `offers/setSort`,
   LOAD_HOTELS: `data/loadHotels`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  LOGOUT: `user/logout,`
 };
 
 export const ActionCreator = {
@@ -18,8 +19,11 @@ export const ActionCreator = {
     type: ActionType.LOAD_HOTELS,
     payload,
   }),
-  requiredAuthorization: (status) => ({
+  requiredAuthorization: (payload) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
+    payload,
+  }),
+  logout: () => ({
+    type: ActionType.LOGOUT,
   }),
 };
