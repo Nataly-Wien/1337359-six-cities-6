@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import RatingList from '../rating-list/rating-list';
 import ReviewField from '../review-field/review-field';
+import withAuth from '../../hoc/with-auth/with-auth';
 
 const ReviewsForm = ({addReview}) => {
   const [rating, setRating] = useState(`0`);
@@ -36,4 +37,4 @@ ReviewsForm.propTypes = {
   addReview: PropTypes.func,
 };
 
-export default ReviewsForm;
+export default withAuth(ReviewsForm);

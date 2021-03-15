@@ -3,7 +3,8 @@ export const ActionType = {
   SET_SORT: `offers/setSort`,
   LOAD_HOTELS: `data/loadHotels`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
-  LOGOUT: `user/logout,`
+  SET_USER: `user/setUser`,
+  LOGOUT: `user/logout`,
 };
 
 export const ActionCreator = {
@@ -26,4 +27,8 @@ export const ActionCreator = {
   logout: () => ({
     type: ActionType.LOGOUT,
   }),
+  setUser: (payload) => ({
+    type: ActionType.SET_USER,
+    payload,
+  })
 };

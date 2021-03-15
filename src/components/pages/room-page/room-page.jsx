@@ -14,10 +14,10 @@ import ReviewsForm from '../../review-form/review-form';
 import Map from '../../map/map';
 import OffersList from '../../offers-list/offers-list';
 import {toUpperCaseFirst, ratingStyle, getPoints} from '../../../common';
-import {Types, NEAR_PLACES_AMOUNT, AuthorizationStatus} from '../../../const';
+import {Types, NEAR_PLACES_AMOUNT} from '../../../const';
 import reviews from '../../../mocks/reviews';
 
-const RoomPage = ({hotels, hotel, authorizationStatus}) => {
+const RoomPage = ({hotels, hotel}) => {
 
   const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
@@ -29,7 +29,8 @@ const RoomPage = ({hotels, hotel, authorizationStatus}) => {
   const mapMarkers = getPoints(nearPlacesHotels);
   mapMarkers.push({id, location, title});
 
-  // const addReviewHandler = (hotelRating, review) => {  //
+  // const addReviewHandler = (hotelRating, review) => {
+  //   console.log(hotelRating, review);
   // };
   const addReviewHandler = () => { };
 
@@ -68,7 +69,7 @@ const RoomPage = ({hotels, hotel, authorizationStatus}) => {
               <Host host={host} description={description} />
               <section className="property__reviews reviews">
                 <Reviews reviews={reviews} />
-                {authorizationStatus === AuthorizationStatus.AUTH && <ReviewsForm addReview={addReviewHandler} />}
+                <ReviewsForm addReview={addReviewHandler} />
               </section>
             </div>
           </div>
@@ -91,13 +92,11 @@ RoomPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   hotel: hotelTypesValidation,
   reviews: PropTypes.arrayOf(reviewTypesValidation),
-  authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({hotels, authorizationStatus}, {match}) => ({
+const mapStateToProps = ({hotels}, {match}) => ({
   hotels,
   hotel: hotels.find((item) => item.id.toString() === match.params.id),
-  authorizationStatus,
 });
 
 export default connect(mapStateToProps, null)(RoomPage);

@@ -34,8 +34,13 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
         ...state,
-        authorizationStatus: action.payload.status,
-        user: action.payload.user,
+        authorizationStatus: action.payload,
+      };
+
+    case ActionType.SET_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
 
     case ActionType.LOGOUT:
