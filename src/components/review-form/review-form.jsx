@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RatingList from '../rating-list/rating-list';
 import ReviewField from '../review-field/review-field';
 import withAuth from '../../hoc/with-auth/with-auth';
+import {ReviewsLength} from '../../const';
 
 const ReviewsForm = ({addReview}) => {
   const [rating, setRating] = useState(`0`);
@@ -10,6 +11,8 @@ const ReviewsForm = ({addReview}) => {
 
   const onRatingChange = (evt) => setRating(evt.target.value);
   const onReviewChange = (evt) => setReview(evt.target.value);
+
+  const isButtonDisabled = rating === 0 || review.length < ReviewsLength.MIN || review.length > ReviewsLength.MAX;
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
@@ -27,7 +30,7 @@ const ReviewsForm = ({addReview}) => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled="" >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isButtonDisabled ? `disabled` : ``} >Submit</button>
       </div>
     </form>
   );

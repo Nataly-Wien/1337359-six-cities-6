@@ -11,7 +11,10 @@ import {ActionCreator} from './store/action';
 import {checkAuth} from './store/api-actions';
 import {AuthorizationStatus} from './const';
 
-const api = createAPI(() => store.dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH)));
+const handleAuthorizationError = () => store.dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH));
+const handleDataLoadingError = (err) => store.dispatch(ActionCreator.setErrorStatus(err));
+
+const api = createAPI(handleAuthorizationError, handleDataLoadingError);
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 

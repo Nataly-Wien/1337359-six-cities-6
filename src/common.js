@@ -21,6 +21,18 @@ export const adaptUserToClient = (person) => {
   return clientPerson;
 };
 
+export const adaptCommentToClient = (comment) => {
+  const clientComment = {
+    ...comment,
+    user: adaptUserToClient(comment.user),
+  };
+
+  delete clientComment.is_pro;
+  delete clientComment.avatar_url;
+
+  return clientComment;
+};
+
 export const adaptHotelToClient = (hotel) => {
   const clientHotel = {
     ...hotel,

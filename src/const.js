@@ -1,9 +1,13 @@
-export const REVIEWS_AMOUNT = 10;
-export const NEAR_PLACES_AMOUNT = 3;
 export const NOT_AUTHORIZED_USERNAME = `Sign in`;
 export const EMPTY_AVATAR_URL = `../img/avatar.svg`;
 export const HOTEL_RATING_VALUES = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
+export const REVIEWS_AMOUNT = 10;
+
+export const ReviewsLength = {
+  MIN: 50,
+  MAX: 300,
+};
 
 export const SORTS = [
   {
@@ -29,6 +33,7 @@ export const Routes = {
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
   ROOM: `/offer/:id`,
+  NOT_FOUND: `/404`,
 };
 
 export const AuthorizationStatus = {
@@ -49,6 +54,9 @@ export const Url = {
   HOTELS: `/hotels`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
+  NEAR: `/nearby`,
+  COMMENTS: `/comments`,
+  FAVORITES: `/favorite`,
 };
 
 export const LeafletConst = {
