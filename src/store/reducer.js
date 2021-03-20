@@ -5,6 +5,7 @@ const initialState = {
   city: CITIES[0],
   sort: 0,
   hotels: [],
+  availableHotels: [],
   currentHotel: {},
   nearHotels: [],
   comments: [],
@@ -15,8 +16,10 @@ const initialState = {
   isCurrentLoading: false,
   isNearLoading: false,
   isCommentsLoading: false,
+  isCommentPosting: false,
   isFavoritesLoading: false,
   isLoadingError: false,
+  isPostCommentError: false,
   errorStatus: 0,
 };
 
@@ -39,6 +42,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         hotels: action.payload,
         isHotelsLoaded: true,
+        availableHotels: action.payload.map((item) => item.id),
       };
 
     case ActionType.FAILURE_LOAD_HOTELS:
@@ -86,7 +90,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isNearLoading: false,
-        isLoadingError: false,
       };
 
     case ActionType.REQUEST_COMMENTS:
@@ -106,7 +109,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isCommentsLoading: false,
-        isLoadingError: false,
+      };
+
+    case ActionType.REQUEST_POSTING_COMMENT:
+      return {
+        ...state,
+        isCommentPosting: true,
+        isPostCommentError: false,
+      };
+
+    case ActionType.POST_COMMENT:
+      return {
+        ...state,
+        isCommentPosting: false,
+        isPostCommentError: false,
+      };
+
+    case ActionType.FAILURE_POSTING_COMMENT:
+      return {
+        ...state,
+        isCommentPosting: false,
+        isPostCommentError: true,
       };
 
     case ActionType.REQUEST_FAVORITES:
@@ -136,6 +159,7 @@ const reducer = (state = initialState, action) => {
         hotels: state.hotels.map((item) => item.id === action.payload.id ? action.payload : item),
         currentHotel: state.currentHotel.id === action.payload.id ? action.payload : state.currentHotel,
         favorites: state.favorites.map((item) => item.id === action.payload.id ? action.payload : item),
+        nearHotels: state.nearHotels.map((item) => item.id === action.payload.id ? action.payload : item),
       };
 
     case ActionType.RESET_CURRENT_OFFER:
@@ -144,6 +168,7 @@ const reducer = (state = initialState, action) => {
         currentHotel: {},
         nearHotels: [],
         comments: [],
+        isPostCommentError: false,
       };
 
     case ActionType.REQUIRED_AUTHORIZATION:
@@ -163,6 +188,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         authorizationStatus: AuthorizationStatus.NO_AUTH,
         user: emptyUser,
+      };
+
+    case ActionType.RESET_FAVORITES:
+      return {
+        ...state,
+        hotels: state.hotels.map((item) => ({
+          ...item,
+          isFavorite: false,
+        })),
+        favorites: [],
+        currentHotel: {
+          ...state.currentHotel,
+          isFavorite: false,
+        },
+        nearHotels: state.nearHotels.map((item) => ({
+          ...item,
+          isFavorite: false,
+        })),
       };
 
     case ActionType.SET_ERROR_STATUS:

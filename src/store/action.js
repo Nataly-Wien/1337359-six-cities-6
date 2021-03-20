@@ -5,31 +5,35 @@ export const ActionType = {
   LOAD_HOTELS: `data/loadHotels`,
   FAILURE_LOAD_HOTELS: `data/failureLoadHotels`,
 
-  REQUEST_CURRENT_HOTEL: `data/requestCurrentHotel`,
+  REQUEST_CURRENT_HOTEL: `offers/requestCurrentHotel`,
   LOAD_CURRENT_HOTEL: `data/loadCurrentHotel`,
   FAILURE_CURRENT_HOTEL: `data/failureCurrentHotel`,
 
-  REQUEST_NEAR_HOTELS: `data/requestNearHotel`,
+  REQUEST_NEAR_HOTELS: `offers/requestNearHotel`,
   LOAD_NEAR_HOTELS: `data/loadNearHotels`,
-  FAILURE_NEAR_HOTELS: `data/failureNearHotels`,
+  FAILURE_NEAR_HOTELS: `errors/failureNearHotels`,
 
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   FAILURE_AUTHORIZATION: `user/failureAuthorization`,
   SET_USER: `user/setUser`,
   LOGOUT: `user/logout`,
 
-  REQUEST_COMMENTS: `data/requestComments`,
+  REQUEST_COMMENTS: `offers/requestComments`,
   LOAD_COMMENTS: `data/loadComments`,
-  FAILURE_COMMENTS: `data/failureComments`,
+  FAILURE_COMMENTS: `errors/failureComments`,
+  REQUEST_POSTING_COMMENT: `offers/requestPostingComment`,
+  POST_COMMENT: `offers/postComment`,
+  FAILURE_POSTING_COMMENT: `errors/failurePostingComment`,
 
-  REQUEST_FAVORITES: `data/requestFavorites`,
+  REQUEST_FAVORITES: `offers/requestFavorites`,
   LOAD_FAVORITES: `data/loadFavorites`,
-  FAILURE_FAVORITES: `data/failureFavorites`,
-  REPLACE_HOTEL: `data/replaceHotel`,
+  FAILURE_FAVORITES: `errors/failureFavorites`,
+  REPLACE_HOTEL: `offers/replaceHotel`,
 
-  RESET_CURRENT_OFFER: `data/resetCurrentOffer`,
+  RESET_CURRENT_OFFER: `offers/resetCurrentOffer`,
+  RESET_FAVORITES: `offers/resetFavorites`,
 
-  // SET_ERROR_STATUS: `data/setErrorStatus`,
+  SET_ERROR_STATUS: `errors/setErrorStatus`,
 };
 
 export const ActionCreator = {
@@ -82,6 +86,15 @@ export const ActionCreator = {
   failureComments: () => ({
     type: ActionType.FAILURE_COMMENTS,
   }),
+  requestPostingComment: () => ({
+    type: ActionType.REQUEST_POSTING_COMMENT,
+  }),
+  postComment: () => ({
+    type: ActionType.POST_COMMENT,
+  }),
+  failurePostingComment: () => ({
+    type: ActionType.FAILURE_POSTING_COMMENT,
+  }),
 
   requestFavorites: () => ({
     type: ActionType.REQUEST_FAVORITES,
@@ -106,12 +119,15 @@ export const ActionCreator = {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload,
   }),
-  logout: () => ({
-    type: ActionType.LOGOUT,
-  }),
   setUser: (payload) => ({
     type: ActionType.SET_USER,
     payload,
+  }),
+  logout: () => ({
+    type: ActionType.LOGOUT,
+  }),
+  resetFavorites: () => ({
+    type: ActionType.RESET_FAVORITES,
   }),
 
   setErrorStatus: (payload) => ({

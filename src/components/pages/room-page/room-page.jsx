@@ -49,7 +49,7 @@ const RoomPage = ({hotel, nearHotels, reviews, availableHotels, onLoadCurrent, o
 RoomPage.propTypes = {
   nearHotels: PropTypes.arrayOf(hotelTypesValidation),
   hotel: hotelTypesValidation,
-  availableHotels: PropTypes.arrayOf(hotelTypesValidation),
+  availableHotels: PropTypes.arrayOf(PropTypes.number),
   reviews: PropTypes.arrayOf(reviewTypesValidation),
   onLoadCurrent: PropTypes.func.isRequired,
   onLoadNear: PropTypes.func.isRequired,

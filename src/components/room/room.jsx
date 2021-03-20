@@ -14,7 +14,6 @@ import ReviewsForm from '../review-form/review-form';
 import OffersList from '../offers-list/offers-list';
 import {toUpperCaseFirst, ratingStyle, getPoints} from '../../common';
 import {Types} from '../../const';
-// import {postComment} from '../../store/api-actions';
 
 const Room = ({hotel, nearPlacesHotels, reviews, addReview}) => {
   const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
@@ -24,11 +23,6 @@ const Room = ({hotel, nearPlacesHotels, reviews, addReview}) => {
 
   const mapMarkers = getPoints(nearPlacesHotels);
   mapMarkers.push({id, location, title});
-
-  // const addReviewHandler = () => { };
-  // const addReviewHandler = (hotelRating, review) => {
-  //   console.log({rating: +hotelRating, comment: review});
-  // };
 
   return (
     <Fragment>
@@ -92,9 +86,4 @@ const mapStateToProps = ({currentHotel}) => ({
   hotel: currentHotel,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   addReviewHandler: (hotelRating, review) => dispatch(postComment({rating: +hotelRating, comment: review})),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Room);
 export default connect(mapStateToProps, null)(Room);

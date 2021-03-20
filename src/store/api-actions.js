@@ -32,8 +32,11 @@ export const fetchComments = (id) => (dispatch, _getState, api) => (
 
 export const postComment = (id, comment) => (dispatch, _getState, api) => (
   api.post(Url.COMMENTS + `/${id}`, comment)
-    .then(({data}) => dispatch(ActionCreator.loadComments(data.map(adaptCommentToClient))))
-    .catch(() => { })
+    .then(({data}) => {
+      dispatch(ActionCreator.loadComments(data.map(adaptCommentToClient)));
+      dispatch(ActionCreator.postComment());
+    })
+    .catch(() => dispatch(ActionCreator.failurePostingComment()))
 );
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (

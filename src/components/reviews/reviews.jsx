@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import {reviewTypesValidation} from '../../types-validation/review-types-validation';
@@ -9,7 +9,7 @@ const Reviews = ({reviews}) => {
   const reviewsList = reviews.sort((a, b) => dayjs(b.date) - dayjs(a.date)).slice(0, REVIEWS_AMOUNT);
 
   return (
-    <>
+    <Fragment>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsList.length}</span></h2>
       <ul className="reviews__list">
         {reviewsList.map((item) => {
@@ -38,7 +38,7 @@ const Reviews = ({reviews}) => {
           );
         })}
       </ul>
-    </>
+    </Fragment>
   );
 };
 

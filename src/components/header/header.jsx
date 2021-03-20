@@ -54,8 +54,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogoutClick: () => dispatch(logout()),
-  onEmailClick: () => dispatch(ActionCreator.requestFavorites())
+  onLogoutClick: () => {
+    dispatch(logout());
+    dispatch(ActionCreator.resetFavorites());
+  },
+  onEmailClick: () => dispatch(ActionCreator.requestFavorites()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
