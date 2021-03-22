@@ -7,9 +7,7 @@ import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';
 import {CardTypes, Types, Routes} from '../../const';
 
-const Card = (props) => {
-  const {page, hotel, onCardHover = () => { }, onCardLeave = () => { }} = props;
-
+const Card = ({page, hotel, onCardHover = () => { }, onCardLeave = () => { }}) => {
   const {isPremium, previewImage, price, isFavorite, rating, title, type, id} = hotel;
   const {articleClassName, imgWrapperClassName, cardInfoClassName, hasPremiumMark, imgWidth, imgHeight} = CardTypes[page];
   const path = Routes.ROOM_PAGE + `${id}`;

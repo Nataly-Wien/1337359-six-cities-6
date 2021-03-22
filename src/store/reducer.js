@@ -5,7 +5,6 @@ const initialState = {
   city: CITIES[0],
   sort: 0,
   hotels: [],
-  availableHotels: [],
   currentHotel: {},
   nearHotels: [],
   comments: [],
@@ -42,7 +41,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         hotels: action.payload,
         isHotelsLoaded: true,
-        availableHotels: action.payload.map((item) => item.id),
       };
 
     case ActionType.FAILURE_LOAD_HOTELS:

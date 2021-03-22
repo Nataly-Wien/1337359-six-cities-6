@@ -12,7 +12,6 @@ import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {fetchHotel, fetchNear, fetchComments, postComment} from '../../../store/api-actions';
 
 const RoomPage = ({hotel, nearHotels, reviews, availableHotels, onLoadCurrent, onLoadNear, onLoadComments,
-
   isCurrentLoading, isNearLoading, isCommentsLoading, isLoadingError, addReview, match}) => {
 
   if (availableHotels.indexOf(+match.params.id) === -1) {
