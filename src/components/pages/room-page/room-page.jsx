@@ -12,6 +12,7 @@ import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {fetchHotel, fetchNear, fetchComments, postComment} from '../../../store/api-actions';
 
 const RoomPage = ({hotel, nearHotels, reviews, availableHotels, onLoadCurrent, onLoadNear, onLoadComments,
+
   isCurrentLoading, isNearLoading, isCommentsLoading, isLoadingError, addReview, match}) => {
 
   if (availableHotels.indexOf(+match.params.id) === -1) {
@@ -19,17 +20,9 @@ const RoomPage = ({hotel, nearHotels, reviews, availableHotels, onLoadCurrent, o
   }
 
   useEffect(() => {
-    if (isCurrentLoading) {
-      onLoadCurrent();
-    }
-
-    if (isCommentsLoading) {
-      onLoadComments();
-    }
-
-    if (isNearLoading) {
-      onLoadNear();
-    }
+    onLoadCurrent();
+    onLoadComments();
+    onLoadNear();
   }, []);
 
   return (
@@ -37,7 +30,7 @@ const RoomPage = ({hotel, nearHotels, reviews, availableHotels, onLoadCurrent, o
       <Header page={Types.NOT_MAIN_PAGE} />
       <main className="page__main page__main--property">
         <ErrorWrapper isLoadingError={isLoadingError}>
-          <LoadWrapper isDataLoading={isCurrentLoading || isNearLoading}>
+          <LoadWrapper isDataLoading={isCurrentLoading || isNearLoading || isCommentsLoading}>
             <Room hotel={hotel} nearPlacesHotels={nearHotels} reviews={reviews} addReview={addReview} />
           </LoadWrapper>
         </ErrorWrapper>

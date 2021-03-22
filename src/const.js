@@ -32,6 +32,7 @@ export const Routes = {
   HOME: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
+  ROOM_PAGE: `/offer/`,
   ROOM: `/offer/:id`,
   NOT_FOUND: `/404`,
 };

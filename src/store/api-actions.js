@@ -8,27 +8,40 @@ export const fetchHotels = () => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.failureLoadHotels()))
 );
 
-export const fetchHotel = (id) => (dispatch, _getState, api) => (
-  api.get(Url.HOTELS + `/${id}`)
-    .then(({data}) => dispatch(ActionCreator.loadCurrentHotel(adaptHotelToClient(data))))
-    .catch(() => {
-      dispatch(ActionCreator.failureCurrentHotel());
-    })
-);
+export const fetchHotel = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.resetCurrentOffer());
+  dispatch(ActionCreator.requestCurrentHotel());
 
-export const fetchNear = (id) => (dispatch, _getState, api) => (
-  api.get(Url.HOTELS + `/${id}` + Url.NEAR)
-    .then(({data}) => dispatch(ActionCreator.loadNearHotels(data.map(adaptHotelToClient))))
-    .catch(() => {
-      dispatch(ActionCreator.failureNearHotels());
-    })
-);
+  return (
+    api.get(Url.HOTELS + `/${id}`)
+      .then(({data}) => dispatch(ActionCreator.loadCurrentHotel(adaptHotelToClient(data))))
+      .catch(() => {
+        dispatch(ActionCreator.failureCurrentHotel());
+      })
+  );
+};
 
-export const fetchComments = (id) => (dispatch, _getState, api) => (
-  api.get(Url.COMMENTS + `/${id}`)
-    .then(({data}) => dispatch(ActionCreator.loadComments(data.map(adaptCommentToClient))))
-    .catch(() => dispatch(ActionCreator.failureComments()))
-);
+export const fetchNear = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.requestNearHotels());
+
+  return (
+    api.get(Url.HOTELS + `/${id}` + Url.NEAR)
+      .then(({data}) => dispatch(ActionCreator.loadNearHotels(data.map(adaptHotelToClient))))
+      .catch(() => {
+        dispatch(ActionCreator.failureNearHotels());
+      })
+  );
+};
+
+export const fetchComments = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.requestComments());
+
+  return (
+    api.get(Url.COMMENTS + `/${id}`)
+      .then(({data}) => dispatch(ActionCreator.loadComments(data.map(adaptCommentToClient))))
+      .catch(() => dispatch(ActionCreator.failureComments()))
+  );
+};
 
 export const postComment = (id, comment) => (dispatch, _getState, api) => (
   api.post(Url.COMMENTS + `/${id}`, comment)
@@ -39,11 +52,15 @@ export const postComment = (id, comment) => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.failurePostingComment()))
 );
 
-export const fetchFavorites = () => (dispatch, _getState, api) => (
-  api.get(Url.FAVORITES)
-    .then(({data}) => dispatch(ActionCreator.loadFavorites(data.map(adaptHotelToClient))))
-    .catch(() => dispatch(ActionCreator.failureFavorites()))
-);
+export const fetchFavorites = () => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.requestFavorites());
+
+  return (
+    api.get(Url.FAVORITES)
+      .then(({data}) => dispatch(ActionCreator.loadFavorites(data.map(adaptHotelToClient))))
+      .catch(() => dispatch(ActionCreator.failureFavorites()))
+  );
+};
 
 export const postFavorite = (id, status) => (dispatch, _getState, api) => (
   api.post(Url.FAVORITES + `/${id}/${status}`)

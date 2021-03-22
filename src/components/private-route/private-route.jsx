@@ -3,11 +3,13 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 
-const PrivateRoute = ({component: Component, currentAuthStatus, permittedAuthStatus, permittedPath, ...rest}) =>
-  <Route
+const PrivateRoute = ({component: Component, currentAuthStatus, permittedAuthStatus, permittedPath, ...rest}) => {
+  // console.log(`curr=`, currentAuthStatus, `perm=`, permittedAuthStatus);
+  return (<Route
     {...rest}
-    render={(props) => currentAuthStatus === permittedAuthStatus ? <Component {...props} /> : <Redirect to={permittedPath} />} />
-  ;
+    render={(props) => currentAuthStatus === permittedAuthStatus ? <Component {...props} /> :
+      <Redirect to={permittedPath} />} />);
+};
 
 PrivateRoute.propTypes = {
   component: PropTypes.object.isRequired,

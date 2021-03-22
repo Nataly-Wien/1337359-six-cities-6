@@ -13,10 +13,8 @@ import ErrorWrapper from '../../error-wrapper/error-wrapper';
 
 const FavoritesPage = ({hotels, onLoadFavorites, isFavoritesLoading, isLoadingError}) => {
   useEffect(() => {
-    if (isFavoritesLoading) {
-      onLoadFavorites();
-    }
-  });
+    onLoadFavorites();
+  }, []);
 
   return (
     <div className="page">
@@ -37,7 +35,7 @@ const FavoritesPage = ({hotels, onLoadFavorites, isFavoritesLoading, isLoadingEr
 
 FavoritesPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
-  onLoadFavorites: PropTypes.func.isFavoritesLoading,
+  onLoadFavorites: PropTypes.func.isRequired,
   isFavoritesLoading: PropTypes.bool.isRequired,
   isLoadingError: PropTypes.bool.isRequired,
 };

@@ -18,6 +18,12 @@ import {Types} from '../../const';
 const Room = ({hotel, nearPlacesHotels, reviews, addReview}) => {
   const {id, city, title, location, isPremium, previewImage, images, price, isFavorite, rating, type, bedrooms, maxAdults, goods, host, description} = hotel;
 
+  if (Object.keys(hotel).length === 0) {
+    return (
+      <div></div>
+    );
+  }
+
   const pictures = images.slice(0, 5);
   pictures.unshift(previewImage);
 

@@ -1,33 +1,27 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import browserHistory from '../../browser-history';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
 import {toUpperCaseFirst, ratingStyle} from '../../common';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';
-import {CardTypes, Types} from '../../const';
-import {ActionCreator} from '../../store/action';
+import {CardTypes, Types, Routes} from '../../const';
 
 const Card = (props) => {
-  const {page, hotel, onCardHover = () => { }, onCardLeave = () => { }, beginDataLoading} = props;
+  const {page, hotel, onCardHover = () => { }, onCardLeave = () => { }} = props;
+
   const {isPremium, previewImage, price, isFavorite, rating, title, type, id} = hotel;
   const {articleClassName, imgWrapperClassName, cardInfoClassName, hasPremiumMark, imgWidth, imgHeight} = CardTypes[page];
-
-  const handleCardClick = (evt) => {
-    evt.preventDefault();
-    beginDataLoading();
-    browserHistory.push(`/offer/${id}`);
-  };
+  const path = Routes.ROOM_PAGE + `${id}`;
 
   return (
     <article className={`${articleClassName} place-card`}
       onMouseEnter={() => onCardHover(id)} onMouseLeave={onCardLeave}>
       {isPremium && hasPremiumMark && <PremiumMark type={Types.CARD} />}
-      <div className={`${imgWrapperClassName} place-card__image-wrapper`} onClick={handleCardClick}>
-        <a href="#">
+      <div className={`${imgWrapperClassName} place-card__image-wrapper`}>
+        <Link to={path}>
           <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className={`${cardInfoClassName} place-card__info`}>
         <div className="place-card__price-wrapper">
@@ -42,8 +36,8 @@ const Card = (props) => {
             <span style={ratingStyle(rating)}></span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={handleCardClick}>
-          <a href="#">{title}</a>
+        <h2 className="place-card__name">
+          <Link to={path}>{title}</Link>
         </h2>
         <p className="place-card__type">{toUpperCaseFirst(type)}</p>
       </div>
@@ -56,17 +50,6 @@ Card.propTypes = {
   onCardHover: PropTypes.func,
   onCardLeave: PropTypes.func,
   page: PropTypes.string.isRequired,
-  beginDataLoading: PropTypes.func.isRequired,
-  setFavorite: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  beginDataLoading: () => {
-    dispatch(ActionCreator.resetCurrentOffer());
-    dispatch(ActionCreator.requestCurrentHotel());
-    dispatch(ActionCreator.requestComments());
-    dispatch(ActionCreator.requestNearHotels());
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Card);
+export default Card;

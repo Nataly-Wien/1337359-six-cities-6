@@ -1,40 +1,40 @@
 import PropTypes from 'prop-types';
 
 const hotelTypesValidation = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  title: PropTypes.string,
   location: PropTypes.shape({
     latitude: PropTypes.number,
     longitude: PropTypes.number,
     zoom: PropTypes.number,
-  }), // .isRequired ?
+  }),
   city: {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     location: PropTypes.shape({
       latitude: PropTypes.number,
       longitude: PropTypes.number,
       zoom: PropTypes.number,
-    }), // .isRequired ?
+    }),
   },
-  previewImage: PropTypes.string.isRequired,
+  previewImage: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string),
-  description: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  isPremium: PropTypes.bool.isRequired,
-  rating: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  bedrooms: PropTypes.number.isRequired,
-  maxAdults: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  goods: PropTypes.arrayOf(PropTypes.string).isRequired,
-}).isRequired;
+  description: PropTypes.string,
+  isFavorite: PropTypes.bool,
+  isPremium: PropTypes.bool,
+  rating: PropTypes.number,
+  type: PropTypes.string,
+  bedrooms: PropTypes.number,
+  maxAdults: PropTypes.number,
+  price: PropTypes.number,
+  goods: PropTypes.arrayOf(PropTypes.string),
+});
 
 
 const hostTypesValidation = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   name: PropTypes.string,
   isPro: PropTypes.bool,
   avatarUrl: PropTypes.string,
-}).isRequired;
+});
 
 export {hotelTypesValidation, hostTypesValidation};

@@ -8,7 +8,6 @@ const HttpStatusCode = {
 };
 
 export const createAPI = (onAuthorized, onLoadingError) => {
-  // export const createAPI = (onAuthorized) => {
 
   const api = axios.create({
     baseURL: BACKEND_URL,
@@ -27,11 +26,6 @@ export const createAPI = (onAuthorized, onLoadingError) => {
     } else {
       onLoadingError(response.status);
     }
-
-    // if (response.status === HttpStatusCode.UNAUTHORIZED) {
-    //   onAuthorized();
-    //   throw err;
-    // }
 
     throw err;
   };

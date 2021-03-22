@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import browserHistory from '../../browser-history';
 import {postFavorite} from '../../store/api-actions';
-import {FavoriteMarkTypes, AuthorizationStatus} from '../../const';
+import {FavoriteMarkTypes, AuthorizationStatus, Routes} from '../../const';
 
 const FavoriteMark = ({isFavorite = true, type, setFavorite, authorizationStatus}) => {
   const {buttonClassTerm, imgWidth, imgHeight} = FavoriteMarkTypes[type];
@@ -12,7 +12,7 @@ const FavoriteMark = ({isFavorite = true, type, setFavorite, authorizationStatus
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       setFavorite(+!isFavorite);
     } else {
-      browserHistory.push(`/login`);
+      browserHistory.push(Routes.LOGIN);
     }
   };
 
