@@ -88,6 +88,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isNearLoading: false,
+        isLoadingError: true
       };
 
     case ActionType.REQUEST_COMMENTS:
@@ -107,6 +108,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isCommentsLoading: false,
+        isLoadingError: true
       };
 
     case ActionType.REQUEST_POSTING_COMMENT:
@@ -160,15 +162,6 @@ const reducer = (state = initialState, action) => {
         nearHotels: state.nearHotels.map((item) => item.id === action.payload.id ? action.payload : item),
       };
 
-    case ActionType.RESET_CURRENT_OFFER:
-      return {
-        ...state,
-        currentHotel: {},
-        nearHotels: [],
-        comments: [],
-        isPostCommentError: false,
-      };
-
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
         ...state,
@@ -195,7 +188,6 @@ const reducer = (state = initialState, action) => {
           ...item,
           isFavorite: false,
         })),
-        favorites: [],
         currentHotel: {
           ...state.currentHotel,
           isFavorite: false,
@@ -212,12 +204,6 @@ const reducer = (state = initialState, action) => {
         errorStatus: action.payload,
       };
   }
-
-  // case ActionType.FAILURE_AUTHORIZATION:
-  //   return {
-  //     ...state,
-  //     isLoadingError: true,
-  //   };
 
   return state;
 };

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import {redirect} from './store/middleware/redirect';
 import {createAPI} from './services/api';
 import {reducer} from './store/reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
@@ -16,7 +17,7 @@ const handleDataLoadingError = (err) => store.dispatch(ActionCreator.setErrorSta
 
 const api = createAPI(handleAuthorizationError, handleDataLoadingError);
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
 
 store.dispatch(checkAuth());
 

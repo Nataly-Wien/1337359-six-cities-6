@@ -12,7 +12,7 @@ import Map from '../map/map';
 import Reviews from '../reviews/reviews';
 import ReviewsForm from '../review-form/review-form';
 import OffersList from '../offers-list/offers-list';
-import {toUpperCaseFirst, ratingStyle, getPoints} from '../../common';
+import {toUpperCaseFirst, ratingStyle, getPoints, getImages} from '../../common';
 import {Types} from '../../const';
 
 const Room = ({hotel, nearPlacesHotels, reviews, addReview}) => {
@@ -24,16 +24,10 @@ const Room = ({hotel, nearPlacesHotels, reviews, addReview}) => {
     );
   }
 
-  const pictures = images.slice(0, 5);
-  pictures.unshift(previewImage);
-
-  const mapMarkers = getPoints(nearPlacesHotels);
-  mapMarkers.push({id, location, title});
-
   return (
     <Fragment>
       <section className="property">
-        <ImageList pictures={pictures} />
+        <ImageList pictures={getImages(images, previewImage)} />
         <div className="property__container container">
           <div className="property__wrapper">
             {isPremium && <PremiumMark type={Types.ROOM_PAGE} />}
@@ -68,7 +62,7 @@ const Room = ({hotel, nearPlacesHotels, reviews, addReview}) => {
           </div>
         </div>
         <section className="property__map map">
-          <Map city={city.location} points={mapMarkers} activeMarker={id} />
+          <Map city={city.location} points={getPoints(nearPlacesHotels, {id, location, title})} activeMarker={id} />
         </section>
       </section>
       <div className="container">

@@ -33,6 +33,8 @@ export const ActionType = {
   RESET_CURRENT_OFFER: `offers/resetCurrentOffer`,
   RESET_FAVORITES: `offers/resetFavorites`,
 
+  REDIRECT_TO_ROUTE: `offers/redirectToRoute`,
+
   SET_ERROR_STATUS: `errors/setErrorStatus`,
 };
 
@@ -111,10 +113,6 @@ export const ActionCreator = {
     payload,
   }),
 
-  resetCurrentOffer: () => ({
-    type: ActionType.RESET_CURRENT_OFFER,
-  }),
-
   requiredAuthorization: (payload) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload,
@@ -130,11 +128,13 @@ export const ActionCreator = {
     type: ActionType.RESET_FAVORITES,
   }),
 
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  }),
+
   setErrorStatus: (payload) => ({
     type: ActionType.SET_ERROR_STATUS,
     payload,
   }),
-  // failureAuthorization: () => ({
-  //   type: ActionType.FAILURE_AUTHORIZATION,
-  // }),
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {hostTypesValidation} from '../../types-validation/hotel-types-validation';
 
 const Host = ({host, description}) => {
@@ -20,6 +21,9 @@ const Host = ({host, description}) => {
   );
 };
 
-Host.propTypes = hostTypesValidation;
+Host.propTypes = {
+  description: PropTypes.string,
+  host: hostTypesValidation,
+};
 
 export default Host;

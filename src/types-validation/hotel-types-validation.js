@@ -1,5 +1,12 @@
 import PropTypes from 'prop-types';
 
+const hostTypesValidation = PropTypes.shape({
+  id: PropTypes.number,
+  name: PropTypes.string,
+  isPro: PropTypes.bool,
+  avatarUrl: PropTypes.string,
+});
+
 const hotelTypesValidation = PropTypes.shape({
   id: PropTypes.number,
   title: PropTypes.string,
@@ -16,6 +23,7 @@ const hotelTypesValidation = PropTypes.shape({
       zoom: PropTypes.number,
     }),
   },
+  host: hostTypesValidation,
   previewImage: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
@@ -27,14 +35,6 @@ const hotelTypesValidation = PropTypes.shape({
   maxAdults: PropTypes.number,
   price: PropTypes.number,
   goods: PropTypes.arrayOf(PropTypes.string),
-});
-
-
-const hostTypesValidation = PropTypes.shape({
-  id: PropTypes.number,
-  name: PropTypes.string,
-  isPro: PropTypes.bool,
-  avatarUrl: PropTypes.string,
 });
 
 export {hotelTypesValidation, hostTypesValidation};

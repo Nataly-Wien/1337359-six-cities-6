@@ -42,6 +42,11 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const HttpStatusCode = {
+  UNAUTHORIZED: 401,
+  PAGE_NOT_FOUND: 404,
+};
+
 export const emptyUser = {
   id: -1,
   email: ``,

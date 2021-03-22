@@ -6,7 +6,21 @@ export const ratingStyle = (rating) => {
   return {width: `${Math.round(rating) * 20}%`};
 };
 
-export const getPoints = (hotels = []) => hotels.map((item) => ({id: item.id, location: item.location, title: item.title}));
+export const getPoints = (hotels = [], currentHotel = {}) => {
+  const points = hotels.map((item) => ({id: item.id, location: item.location, title: item.title}));
+  if (Object.keys(currentHotel).length > 0) {
+    points.push(currentHotel);
+  }
+
+  return points;
+};
+
+export const getImages = (images, firstImage) => {
+  const pictures = images.slice(0, 5);
+  pictures.unshift(firstImage);
+
+  return pictures;
+};
 
 export const adaptUserToClient = (person) => {
   const clientPerson = {

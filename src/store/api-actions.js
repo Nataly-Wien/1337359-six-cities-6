@@ -1,5 +1,5 @@
 import {ActionCreator} from './action';
-import {AuthorizationStatus, Url} from '../const';
+import {AuthorizationStatus, Url, Routes, HttpStatusCode} from '../const';
 import {adaptHotelToClient, adaptUserToClient, adaptCommentToClient} from '../common';
 
 export const fetchHotels = () => (dispatch, _getState, api) => (
@@ -9,14 +9,17 @@ export const fetchHotels = () => (dispatch, _getState, api) => (
 );
 
 export const fetchHotel = (id) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.resetCurrentOffer());
   dispatch(ActionCreator.requestCurrentHotel());
 
   return (
     api.get(Url.HOTELS + `/${id}`)
       .then(({data}) => dispatch(ActionCreator.loadCurrentHotel(adaptHotelToClient(data))))
-      .catch(() => {
+      .catch((err) => {
         dispatch(ActionCreator.failureCurrentHotel());
+
+        if (err === HttpStatusCode.PAGE_NOT_FOUND) {
+          dispatch(ActionCreator.redirectToRoute(Routes.NOT_FOUND));
+        }
       })
   );
 };
@@ -83,9 +86,7 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
       dispatch(ActionCreator.setUser(adaptUserToClient(data)));
       dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
     })
-    .catch(() => {
-      // console.log(`catch login`);
-    })
+    .catch(() => { })
 );
 
 export const logout = () => (dispatch, _getState, api) => (api.get(Url.LOGOUT)
