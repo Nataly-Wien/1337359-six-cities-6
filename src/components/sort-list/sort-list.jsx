@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
+import {getSort} from '../../store/offers/selectors';
 import {SORTS} from '../../const';
 
 const SortList = ({activeSort, setActiveSort}) => {
@@ -29,8 +30,8 @@ SortList.propTypes = {
   setActiveSort: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({OFFERS}) => ({
-  activeSort: OFFERS.sort,
+const mapStateToProps = (state) => ({
+  activeSort: getSort(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

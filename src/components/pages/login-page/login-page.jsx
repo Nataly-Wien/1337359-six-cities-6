@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
+import {getLoadingErrorStatus} from '../../../store/data/selectors';
 import {Types} from '../../../const';
 import Header from '../../header/header';
 import LoginForm from '../../login-form/login-form';
@@ -41,8 +42,8 @@ const mapDispatchToProps = (dispatch) => ({
   signInHandler: (user) => dispatch(login(user)),
 });
 
-const mapStateToProps = ({DATA}) => ({
-  isLoadingError: DATA.isLoadingError,
+const mapStateToProps = (state) => ({
+  isLoadingError: getLoadingErrorStatus(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

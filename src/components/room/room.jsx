@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
 import {reviewTypesValidation} from '../../types-validation/review-types-validation';
+import {getCurrentHotel} from '../../store/data/selectors';
 import ImageList from '../image-list/image-list';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';
@@ -82,8 +83,8 @@ Room.propTypes = {
   addReview: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  hotel: DATA.currentHotel,
+const mapStateToProps = (state) => ({
+  hotel: getCurrentHotel(state),
 });
 
 export default connect(mapStateToProps, null)(Room);

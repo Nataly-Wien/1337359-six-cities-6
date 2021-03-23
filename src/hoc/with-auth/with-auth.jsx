@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../const';
 
 const withAuth = (Component) => {
@@ -7,8 +8,8 @@ const withAuth = (Component) => {
     return isAuth && <Component {...props} />;
   };
 
-  const mapStateToProps = ({USER}) => ({
-    isAuth: USER.authorizationStatus === AuthorizationStatus.AUTH,
+  const mapStateToProps = (state) => ({
+    isAuth: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
   });
 
   return connect(mapStateToProps)(wrapper);

@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import {fetchHotels} from '../../../store/api-actions';
+import {getSort, getCity} from '../../../store/offers/selectors';
+import {getHotelsLoadingStatus, getLoadingErrorStatus} from '../../../store/data/selectors';
+import {getAuthorizationStatus} from '../../../store/user/selectors';
+import {getFilteredSortedHotels} from '../../../store/memoized-selectors';
 import Header from '../../header/header';
 import Cities from '../../cities/cities';
 import PlacesEmpty from '../../places/places-empty';
@@ -31,7 +35,7 @@ const MainPage = ({hotels, city, sort, isHotelsLoading, isLoadingError, authoriz
         <div className="cities">
           <LoadWrapper isDataLoading={isHotelsLoading}>
             {hotels.length === 0 ? <PlacesEmpty city={city} isLoadingError={isLoadingError} /> :
-              <Places hotels={hotels} city={city} sort={sort} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
+              <Places hotels={hotels} city={city} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
           </LoadWrapper>
         </div >
       </main>
@@ -49,13 +53,13 @@ MainPage.propTypes = {
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({OFFERS, DATA, USER}) => ({
-  hotels: DATA.hotels.filter((item) => item.city.name === OFFERS.city),
-  city: OFFERS.city,
-  sort: OFFERS.sort,
-  isHotelsLoading: DATA.isHotelsLoading,
-  isLoadingError: DATA.isLoadingError,
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  hotels: getFilteredSortedHotels(state),
+  city: getCity(state),
+  sort: getSort(state),
+  isHotelsLoading: getHotelsLoadingStatus(state),
+  isLoadingError: getLoadingErrorStatus(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

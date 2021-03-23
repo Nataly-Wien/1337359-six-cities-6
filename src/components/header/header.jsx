@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {logout} from '../../store/api-actions';
 import LogoutButton from './logout-button';
+import {getUser, getAuthorizationStatus} from '../../store/user/selectors';
 import {HeaderTypes, AuthorizationStatus, Routes} from '../../const';
 
 const Header = ({page, authorizationStatus, user, onLogoutClick}) => {
@@ -47,9 +48,9 @@ Header.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({USER}) => ({
-  user: USER.user,
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  user: getUser(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

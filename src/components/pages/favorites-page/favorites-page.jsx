@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
+import {getFavorites, getFavoritesLoadingStatus, getLoadingErrorStatus} from '../../../store/data/selectors';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
 import FavoritePlaces from '../../favorite-places/favorite_places';
@@ -40,10 +41,10 @@ FavoritesPage.propTypes = {
   isLoadingError: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  hotels: DATA.favorites,
-  isFavoritesLoading: DATA.isFavoritesLoading,
-  isLoadingError: DATA.isLoadingError,
+const mapStateToProps = (state) => ({
+  hotels: getFavorites(state),
+  isFavoritesLoading: getFavoritesLoadingStatus(state),
+  isLoadingError: getLoadingErrorStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

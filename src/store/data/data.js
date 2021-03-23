@@ -77,7 +77,6 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         isNearLoading: false,
-        isLoadingError: true
       };
 
     case ActionType.REQUEST_COMMENTS:
@@ -97,7 +96,6 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         isCommentsLoading: false,
-        isLoadingError: true
       };
 
     case ActionType.REQUEST_POSTING_COMMENT:
