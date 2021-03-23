@@ -4,7 +4,8 @@ import {HttpStatusCode} from '../const';
 const BACKEND_URL = `https://6.react.pages.academy/six-cities`;
 const REQUEST_TIMEOUT = 5000;
 
-export const createAPI = (onAuthorized, onLoadingError) => {
+export const createAPI = (onAuthorized) => {
+
 
   const api = axios.create({
     baseURL: BACKEND_URL,
@@ -19,8 +20,6 @@ export const createAPI = (onAuthorized, onLoadingError) => {
 
     if (response.status === HttpStatusCode.UNAUTHORIZED) {
       onAuthorized();
-    } else {
-      onLoadingError(response.status);
     }
 
     throw response.status;

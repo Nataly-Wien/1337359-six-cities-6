@@ -50,9 +50,9 @@ ReviewsForm.propTypes = {
   requestPosting: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({isCommentPosting, isPostCommentError}) => ({
-  isCommentPosting,
-  isPostCommentError,
+const mapStateToProps = ({DATA}) => ({
+  isCommentPosting: DATA.isCommentPosting,
+  isPostCommentError: DATA.isPostCommentError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

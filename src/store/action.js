@@ -2,40 +2,37 @@ export const ActionType = {
   SET_CITY: `offers/setCity`,
   SET_SORT: `offers/setSort`,
 
+  REQUEST_HOTELS: `data/requestHotels`,
   LOAD_HOTELS: `data/loadHotels`,
   FAILURE_LOAD_HOTELS: `data/failureLoadHotels`,
 
-  REQUEST_CURRENT_HOTEL: `offers/requestCurrentHotel`,
+  REQUEST_CURRENT_HOTEL: `data/requestCurrentHotel`,
   LOAD_CURRENT_HOTEL: `data/loadCurrentHotel`,
   FAILURE_CURRENT_HOTEL: `data/failureCurrentHotel`,
 
-  REQUEST_NEAR_HOTELS: `offers/requestNearHotel`,
+  REQUEST_NEAR_HOTELS: `data/requestNearHotel`,
   LOAD_NEAR_HOTELS: `data/loadNearHotels`,
-  FAILURE_NEAR_HOTELS: `errors/failureNearHotels`,
+  FAILURE_NEAR_HOTELS: `data/failureNearHotels`,
 
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
-  FAILURE_AUTHORIZATION: `user/failureAuthorization`,
   SET_USER: `user/setUser`,
   LOGOUT: `user/logout`,
 
-  REQUEST_COMMENTS: `offers/requestComments`,
+  REQUEST_COMMENTS: `data/requestComments`,
   LOAD_COMMENTS: `data/loadComments`,
-  FAILURE_COMMENTS: `errors/failureComments`,
-  REQUEST_POSTING_COMMENT: `offers/requestPostingComment`,
-  POST_COMMENT: `offers/postComment`,
-  FAILURE_POSTING_COMMENT: `errors/failurePostingComment`,
+  FAILURE_COMMENTS: `data/failureComments`,
 
-  REQUEST_FAVORITES: `offers/requestFavorites`,
+  REQUEST_POSTING_COMMENT: `data/requestPostingComment`,
+  POST_COMMENT: `data/postComment`,
+  FAILURE_POSTING_COMMENT: `data/failurePostingComment`,
+
+  REQUEST_FAVORITES: `data/requestFavorites`,
   LOAD_FAVORITES: `data/loadFavorites`,
-  FAILURE_FAVORITES: `errors/failureFavorites`,
-  REPLACE_HOTEL: `offers/replaceHotel`,
+  FAILURE_FAVORITES: `data/failureFavorites`,
 
-  RESET_CURRENT_OFFER: `offers/resetCurrentOffer`,
-  RESET_FAVORITES: `offers/resetFavorites`,
+  REPLACE_HOTEL: `data/replaceHotel`,
 
   REDIRECT_TO_ROUTE: `offers/redirectToRoute`,
-
-  SET_ERROR_STATUS: `errors/setErrorStatus`,
 };
 
 export const ActionCreator = {
@@ -48,6 +45,9 @@ export const ActionCreator = {
     payload,
   }),
 
+  requestHotels: () => ({
+    type: ActionType.REQUEST_HOTELS,
+  }),
   loadHotels: (payload) => ({
     type: ActionType.LOAD_HOTELS,
     payload,
@@ -124,17 +124,9 @@ export const ActionCreator = {
   logout: () => ({
     type: ActionType.LOGOUT,
   }),
-  resetFavorites: () => ({
-    type: ActionType.RESET_FAVORITES,
-  }),
 
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
-  }),
-
-  setErrorStatus: (payload) => ({
-    type: ActionType.SET_ERROR_STATUS,
-    payload,
   }),
 };

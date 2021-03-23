@@ -10,17 +10,15 @@ import Places from '../../places/places';
 import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {Types} from '../../../const';
 
-const MainPage = ({hotels, city, sort, isHotelsLoaded, isLoadingError, onLoadData}) => {
+const MainPage = ({hotels, city, sort, isHotelsLoading, isLoadingError, authorizationStatus, onLoadData}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
   useEffect(() => {
-    if (!isHotelsLoaded) {
-      onLoadData();
-    }
-  }, [isHotelsLoaded]);
+    onLoadData();
+  }, [authorizationStatus]);
 
   return (
     <div className="page page--gray page--main">
@@ -31,7 +29,7 @@ const MainPage = ({hotels, city, sort, isHotelsLoaded, isLoadingError, onLoadDat
           <Cities />
         </div>
         <div className="cities">
-          <LoadWrapper isDataLoading={!isHotelsLoaded}>
+          <LoadWrapper isDataLoading={isHotelsLoading}>
             {hotels.length === 0 ? <PlacesEmpty city={city} isLoadingError={isLoadingError} /> :
               <Places hotels={hotels} city={city} sort={sort} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
           </LoadWrapper>
@@ -45,17 +43,19 @@ MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   city: PropTypes.string.isRequired,
   sort: PropTypes.number.isRequired,
-  isHotelsLoaded: PropTypes.bool.isRequired,
+  isHotelsLoading: PropTypes.bool.isRequired,
   isLoadingError: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({hotels, city, sort, isHotelsLoaded, isLoadingError}) => ({
-  hotels: hotels.filter((item) => item.city.name === city),
-  city,
-  sort,
-  isHotelsLoaded,
-  isLoadingError,
+const mapStateToProps = ({OFFERS, DATA, USER}) => ({
+  hotels: DATA.hotels.filter((item) => item.city.name === OFFERS.city),
+  city: OFFERS.city,
+  sort: OFFERS.sort,
+  isHotelsLoading: DATA.isHotelsLoading,
+  isLoadingError: DATA.isLoadingError,
+  authorizationStatus: USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

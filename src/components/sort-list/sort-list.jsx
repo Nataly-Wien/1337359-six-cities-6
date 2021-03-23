@@ -29,8 +29,8 @@ SortList.propTypes = {
   setActiveSort: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  activeSort: state.sort,
+const mapStateToProps = ({OFFERS}) => ({
+  activeSort: OFFERS.sort,
 });
 
 const mapDispatchToProps = (dispatch) => ({

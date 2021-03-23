@@ -40,10 +40,10 @@ FavoritesPage.propTypes = {
   isLoadingError: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({favorites, isFavoritesLoading, isLoadingError}) => ({
-  hotels: favorites,
-  isFavoritesLoading,
-  isLoadingError
+const mapStateToProps = ({DATA}) => ({
+  hotels: DATA.favorites,
+  isFavoritesLoading: DATA.isFavoritesLoading,
+  isLoadingError: DATA.isLoadingError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

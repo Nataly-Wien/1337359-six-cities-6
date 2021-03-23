@@ -34,8 +34,8 @@ Cities.propTypes = {
   activeCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  activeCity: state.city,
+const mapStateToProps = ({OFFERS}) => ({
+  activeCity: OFFERS.city,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -82,8 +82,8 @@ Room.propTypes = {
   addReview: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({currentHotel}) => ({
-  hotel: currentHotel,
+const mapStateToProps = ({DATA}) => ({
+  hotel: DATA.currentHotel,
 });
 
 export default connect(mapStateToProps, null)(Room);

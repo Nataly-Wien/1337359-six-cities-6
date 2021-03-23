@@ -41,8 +41,8 @@ const mapDispatchToProps = (dispatch) => ({
   signInHandler: (user) => dispatch(login(user)),
 });
 
-const mapStateToProps = ({isLoadingError}) => ({
-  isLoadingError,
+const mapStateToProps = ({DATA}) => ({
+  isLoadingError: DATA.isLoadingError,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

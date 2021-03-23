@@ -11,13 +11,13 @@ import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {fetchHotel, fetchNear, fetchComments, postComment} from '../../../store/api-actions';
 
 const RoomPage = ({hotel, nearHotels, reviews, onLoadCurrent, onLoadNear, onLoadComments,
-  isCurrentLoading, isNearLoading, isCommentsLoading, isLoadingError, addReview, match}) => {
+  isCurrentLoading, isNearLoading, isCommentsLoading, isLoadingError, addReview, authorizationStatus, match}) => {
 
   useEffect(() => {
     onLoadCurrent();
     onLoadComments();
     onLoadNear();
-  }, [match.params.id]);
+  }, [match.params.id, authorizationStatus]);
 
   return (
     <div className="page">
@@ -44,18 +44,20 @@ RoomPage.propTypes = {
   isNearLoading: PropTypes.bool.isRequired,
   isLoadingError: PropTypes.bool.isRequired,
   isCommentsLoading: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   addReview: PropTypes.func.isRequired,
   match: PropTypes.object,
 };
 
-const mapStateToProps = (state) => ({
-  isCurrentLoading: state.isCurrentLoading,
-  isCommentsLoading: state.isCommentsLoading,
-  isNearLoading: state.isNearLoading,
-  isLoadingError: state.isLoadingError,
-  hotel: state.currentHotel,
-  nearHotels: state.nearHotels,
-  reviews: state.comments,
+const mapStateToProps = ({DATA, USER}) => ({
+  isCurrentLoading: DATA.isCurrentLoading,
+  isCommentsLoading: DATA.isCommentsLoading,
+  isNearLoading: DATA.isNearLoading,
+  isLoadingError: DATA.isLoadingError,
+  hotel: DATA.currentHotel,
+  nearHotels: DATA.nearHotels,
+  reviews: DATA.comments,
+  authorizationStatus: USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch, {match}) => ({

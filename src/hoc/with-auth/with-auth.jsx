@@ -7,8 +7,8 @@ const withAuth = (Component) => {
     return isAuth && <Component {...props} />;
   };
 
-  const mapStateToProps = (store) => ({
-    isAuth: store.authorizationStatus === AuthorizationStatus.AUTH,
+  const mapStateToProps = ({USER}) => ({
+    isAuth: USER.authorizationStatus === AuthorizationStatus.AUTH,
   });
 
   return connect(mapStateToProps)(wrapper);
