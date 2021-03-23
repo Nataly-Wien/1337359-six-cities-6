@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import {fetchHotels} from '../../../store/api-actions';
-import {getSort, getCity} from '../../../store/offers/selectors';
+import {getCity} from '../../../store/offers/selectors';
 import {getHotelsLoadingStatus, getLoadingErrorStatus} from '../../../store/data/selectors';
 import {getAuthorizationStatus} from '../../../store/user/selectors';
 import {getFilteredSortedHotels} from '../../../store/memoized-selectors';
@@ -14,7 +14,7 @@ import Places from '../../places/places';
 import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {Types} from '../../../const';
 
-const MainPage = ({hotels, city, sort, isHotelsLoading, isLoadingError, authorizationStatus, onLoadData}) => {
+const MainPage = ({hotels, city, isHotelsLoading, isLoadingError, authorizationStatus, onLoadData}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
@@ -46,7 +46,6 @@ const MainPage = ({hotels, city, sort, isHotelsLoading, isLoadingError, authoriz
 MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   city: PropTypes.string.isRequired,
-  sort: PropTypes.number.isRequired,
   isHotelsLoading: PropTypes.bool.isRequired,
   isLoadingError: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
@@ -56,7 +55,6 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => ({
   hotels: getFilteredSortedHotels(state),
   city: getCity(state),
-  sort: getSort(state),
   isHotelsLoading: getHotelsLoadingStatus(state),
   isLoadingError: getLoadingErrorStatus(state),
   authorizationStatus: getAuthorizationStatus(state),
