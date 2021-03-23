@@ -10,17 +10,17 @@ import Places from '../../places/places';
 import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {Types} from '../../../const';
 
-const MainPage = ({hotels, city, sort, isDataLoaded, onLoadData}) => {
+const MainPage = ({hotels, city, sort, isHotelsLoaded, isLoadingError, onLoadData}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isHotelsLoaded) {
       onLoadData();
     }
-  }, [isDataLoaded]);
+  }, [isHotelsLoaded]);
 
   return (
     <div className="page page--gray page--main">
@@ -31,8 +31,8 @@ const MainPage = ({hotels, city, sort, isDataLoaded, onLoadData}) => {
           <Cities />
         </div>
         <div className="cities">
-          <LoadWrapper isDataLoaded={isDataLoaded}>
-            {hotels.length === 0 ? <PlacesEmpty city={city} /> :
+          <LoadWrapper isDataLoading={!isHotelsLoaded}>
+            {hotels.length === 0 ? <PlacesEmpty city={city} isLoadingError={isLoadingError} /> :
               <Places hotels={hotels} city={city} sort={sort} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
           </LoadWrapper>
         </div >
@@ -45,15 +45,17 @@ MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   city: PropTypes.string.isRequired,
   sort: PropTypes.number.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
+  isHotelsLoaded: PropTypes.bool.isRequired,
+  isLoadingError: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({hotels, city, sort, isDataLoaded}) => ({
+const mapStateToProps = ({hotels, city, sort, isHotelsLoaded, isLoadingError}) => ({
   hotels: hotels.filter((item) => item.city.name === city),
   city,
   sort,
-  isDataLoaded,
+  isHotelsLoaded,
+  isLoadingError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,32 +1,25 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../types-validation/hotel-types-validation';
 import {toUpperCaseFirst, ratingStyle} from '../../common';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteMark from '../favorite-mark/favorite-mark';
-import {CardTypes, Types} from '../../const';
+import {CardTypes, Types, Routes} from '../../const';
 
-const Card = (props) => {
-  const {page, hotel, onCardHover = () => { }, onCardLeave = () => { }} = props;
+const Card = ({page, hotel, onCardHover = () => { }, onCardLeave = () => { }}) => {
   const {isPremium, previewImage, price, isFavorite, rating, title, type, id} = hotel;
   const {articleClassName, imgWrapperClassName, cardInfoClassName, hasPremiumMark, imgWidth, imgHeight} = CardTypes[page];
-
-  const history = useHistory();
-
-  const handleCardClick = (evt) => {
-    evt.preventDefault();
-    history.push(`/offer/${id}`);
-  };
+  const path = Routes.ROOM_PAGE + `${id}`;
 
   return (
     <article className={`${articleClassName} place-card`}
-      onMouseEnter={() => onCardHover(id)} onMouseLeave={onCardLeave} onClick={handleCardClick}>
+      onMouseEnter={() => onCardHover(id)} onMouseLeave={onCardLeave}>
       {isPremium && hasPremiumMark && <PremiumMark type={Types.CARD} />}
       <div className={`${imgWrapperClassName} place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={path}>
           <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className={`${cardInfoClassName} place-card__info`}>
         <div className="place-card__price-wrapper">
@@ -34,7 +27,7 @@ const Card = (props) => {
             <b className="place-card__price-value">&euro;{price.toString()}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <FavoriteMark isFavorite={isFavorite} type={Types.CARD} />
+          <FavoriteMark isFavorite={isFavorite} type={Types.CARD} id={id} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -42,7 +35,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={path}>{title}</Link>
         </h2>
         <p className="place-card__type">{toUpperCaseFirst(type)}</p>
       </div>
@@ -56,6 +49,5 @@ Card.propTypes = {
   onCardLeave: PropTypes.func,
   page: PropTypes.string.isRequired,
 };
-
 
 export default Card;

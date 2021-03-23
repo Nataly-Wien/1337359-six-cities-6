@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../spinner/spinner';
 
-const LoadWrapper = ({isDataLoaded, children}) => {
+const LoadWrapper = ({isDataLoading, children}) => {
   return (
-    isDataLoaded && children || <Spinner />
+    !isDataLoading && children || <Spinner />
   );
 };
 
 LoadWrapper.propTypes = {
-  isDataLoaded: PropTypes.bool.isRequired,
+  isDataLoading: PropTypes.bool.isRequired,
   children: PropTypes.element,
 };
 

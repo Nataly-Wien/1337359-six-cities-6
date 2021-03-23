@@ -8,7 +8,7 @@ const FavoritePlaces = ({hotels}) => {
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
-      {<LocationList hotels={hotels} page={Types.FAVORITES_PAGE} />}
+      <LocationList hotels={hotels} page={Types.FAVORITES_PAGE} />
     </section>
   );
 };
