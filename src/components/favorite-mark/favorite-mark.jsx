@@ -1,19 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import browserHistory from '../../browser-history';
 import {postFavorite} from '../../store/api-actions';
-import {FavoriteMarkTypes, AuthorizationStatus, Routes} from '../../const';
+import {FavoriteMarkTypes} from '../../const';
 
-const FavoriteMark = ({isFavorite = true, type, setFavorite, authorizationStatus}) => {
+const FavoriteMark = ({isFavorite, type, setFavorite}) => {
   const {buttonClassTerm, imgWidth, imgHeight} = FavoriteMarkTypes[type];
 
   const onFavoriteClick = () => {
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
-      setFavorite(+!isFavorite);
-    } else {
-      browserHistory.push(Routes.LOGIN);
-    }
+    setFavorite(+!isFavorite);
   };
 
   return (
@@ -31,15 +26,10 @@ FavoriteMark.propTypes = {
   isFavorite: PropTypes.bool,
   type: PropTypes.string.isRequired,
   setFavorite: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
 };
-
-const mapStateToProps = ({authorizationStatus}) => ({
-  authorizationStatus,
-});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setFavorite: (status) => dispatch(postFavorite(ownProps.id, status))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavoriteMark);
+export default connect(null, mapDispatchToProps)(FavoriteMark);

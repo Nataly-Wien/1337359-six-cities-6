@@ -4,17 +4,17 @@ import {hotelTypesValidation} from '../../types-validation/hotel-types-validatio
 import SortList from '../sort-list/sort-list';
 import OffersList from '../offers-list/offers-list';
 import Map from '../map/map';
-import {Types, SORTS} from '../../const';
+import {Types} from '../../const';
 import {getPoints} from '../../common';
 
-const Places = ({hotels, city, sort, activeCard, onCardHover, onCardLeave}) => {
+const Places = ({hotels, city, activeCard, onCardHover, onCardLeave}) => {
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{`${hotels.length} place${hotels.length !== 1 ? `s` : ``} to stay in ${city}`}</b>
         <SortList />
-        <OffersList hotels={hotels.sort(SORTS[sort].rule)} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
+        <OffersList hotels={hotels} page={Types.MAIN_PAGE} onCardHover={onCardHover} onCardLeave={onCardLeave} />
       </section >
       <div className="cities__right-section">
         <section className="cities__map map">
@@ -28,7 +28,6 @@ const Places = ({hotels, city, sort, activeCard, onCardHover, onCardLeave}) => {
 Places.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   city: PropTypes.string.isRequired,
-  sort: PropTypes.number.isRequired,
   activeCard: PropTypes.number.isRequired,
   onCardHover: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,

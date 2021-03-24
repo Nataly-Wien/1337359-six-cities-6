@@ -3,8 +3,9 @@ import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {logout} from '../../store/api-actions';
+import LogoutButton from './logout-button';
+import {getUser, getAuthorizationStatus} from '../../store/user/selectors';
 import {HeaderTypes, AuthorizationStatus, Routes} from '../../const';
-import {ActionCreator} from '../../store/action';
 
 const Header = ({page, authorizationStatus, user, onLogoutClick}) => {
 
@@ -27,8 +28,7 @@ const Header = ({page, authorizationStatus, user, onLogoutClick}) => {
                   </div>
                   <span className="header__user-name user__name">{authorizationStatus === AuthorizationStatus.AUTH ? email : `Sign in`}</span>
                 </Link>
-                {authorizationStatus === AuthorizationStatus.AUTH && <button className="button" onClick={onLogoutClick}
-                  style={{marginLeft: `10px`, width: `18px`, height: `18px`, backgroundImage: `url(../img/logout.svg)`}}></button>}
+                <LogoutButton onLogoutClick={onLogoutClick} />
               </li>
             </ul>
           </nav>
@@ -49,15 +49,12 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user,
-  authorizationStatus: state.authorizationStatus,
+  user: getUser(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogoutClick: () => {
-    dispatch(logout());
-    dispatch(ActionCreator.resetFavorites());
-  },
+  onLogoutClick: () => dispatch(logout()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

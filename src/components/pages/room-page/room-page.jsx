@@ -3,21 +3,26 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import {reviewTypesValidation} from '../../../types-validation/review-types-validation';
+import {getAuthorizationStatus} from '../../../store/user/selectors';
 import Header from '../../header/header';
 import Room from '../../room/room';
 import ErrorWrapper from '../../error-wrapper/error-wrapper';
 import {Types} from '../../../const';
 import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {fetchHotel, fetchNear, fetchComments, postComment} from '../../../store/api-actions';
+import {
+  getCurrentLoadingStatus, getCommentsLoadingStatus, getNearLoadingStatus, getLoadingErrorStatus,
+  getCurrentHotel, getNearHotels, getComments
+} from '../../../store/data/selectors';
 
 const RoomPage = ({hotel, nearHotels, reviews, onLoadCurrent, onLoadNear, onLoadComments,
-  isCurrentLoading, isNearLoading, isCommentsLoading, isLoadingError, addReview, match}) => {
+  isCurrentLoading, isNearLoading, isCommentsLoading, isLoadingError, addReview, authorizationStatus, match}) => {
 
   useEffect(() => {
     onLoadCurrent();
     onLoadComments();
     onLoadNear();
-  }, [match.params.id]);
+  }, [match.params.id, authorizationStatus]);
 
   return (
     <div className="page">
@@ -44,18 +49,20 @@ RoomPage.propTypes = {
   isNearLoading: PropTypes.bool.isRequired,
   isLoadingError: PropTypes.bool.isRequired,
   isCommentsLoading: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   addReview: PropTypes.func.isRequired,
   match: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  isCurrentLoading: state.isCurrentLoading,
-  isCommentsLoading: state.isCommentsLoading,
-  isNearLoading: state.isNearLoading,
-  isLoadingError: state.isLoadingError,
-  hotel: state.currentHotel,
-  nearHotels: state.nearHotels,
-  reviews: state.comments,
+  isCurrentLoading: getCurrentLoadingStatus(state),
+  isCommentsLoading: getCommentsLoadingStatus(state),
+  isNearLoading: getNearLoadingStatus(state),
+  isLoadingError: getLoadingErrorStatus(state),
+  hotel: getCurrentHotel(state),
+  nearHotels: getNearHotels(state),
+  reviews: getComments(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch, {match}) => ({

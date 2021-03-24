@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {getCommentPostingStatus, getPostCommentErrorStatus} from '../../store/data/selectors';
 import RatingList from '../rating-list/rating-list';
 import ReviewField from '../review-field/review-field';
 import withAuth from '../../hoc/with-auth/with-auth';
@@ -50,9 +51,9 @@ ReviewsForm.propTypes = {
   requestPosting: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({isCommentPosting, isPostCommentError}) => ({
-  isCommentPosting,
-  isPostCommentError,
+const mapStateToProps = (state) => ({
+  isCommentPosting: getCommentPostingStatus(state),
+  isPostCommentError: getPostCommentErrorStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

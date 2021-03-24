@@ -2,11 +2,15 @@ import {ActionCreator} from './action';
 import {AuthorizationStatus, Url, Routes, HttpStatusCode} from '../const';
 import {adaptHotelToClient, adaptUserToClient, adaptCommentToClient} from '../common';
 
-export const fetchHotels = () => (dispatch, _getState, api) => (
-  api.get(Url.HOTELS)
-    .then(({data}) => dispatch(ActionCreator.loadHotels(data.map(adaptHotelToClient))))
-    .catch(() => dispatch(ActionCreator.failureLoadHotels()))
-);
+export const fetchHotels = () => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.requestHotels);
+
+  return (
+    api.get(Url.HOTELS)
+      .then(({data}) => dispatch(ActionCreator.loadHotels(data.map(adaptHotelToClient))))
+      .catch(() => dispatch(ActionCreator.failureLoadHotels()))
+  );
+};
 
 export const fetchHotel = (id) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.requestCurrentHotel());
@@ -30,9 +34,7 @@ export const fetchNear = (id) => (dispatch, _getState, api) => {
   return (
     api.get(Url.HOTELS + `/${id}` + Url.NEAR)
       .then(({data}) => dispatch(ActionCreator.loadNearHotels(data.map(adaptHotelToClient))))
-      .catch(() => {
-        dispatch(ActionCreator.failureNearHotels());
-      })
+      .catch(() => dispatch(ActionCreator.failureNearHotels()))
   );
 };
 
@@ -68,7 +70,11 @@ export const fetchFavorites = () => (dispatch, _getState, api) => {
 export const postFavorite = (id, status) => (dispatch, _getState, api) => (
   api.post(Url.FAVORITES + `/${id}/${status}`)
     .then(({data}) => dispatch(ActionCreator.replaceHotel(adaptHotelToClient(data))))
-    .catch(() => { })
+    .catch((err) => {
+      if (err === HttpStatusCode.UNAUTHORIZED) {
+        dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+      }
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

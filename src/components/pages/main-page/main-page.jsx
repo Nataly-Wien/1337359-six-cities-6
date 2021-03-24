@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {hotelTypesValidation} from '../../../types-validation/hotel-types-validation';
 import {fetchHotels} from '../../../store/api-actions';
+import {getCity} from '../../../store/offers/selectors';
+import {getHotelsLoadingStatus, getLoadingErrorStatus} from '../../../store/data/selectors';
+import {getAuthorizationStatus} from '../../../store/user/selectors';
+import {getFilteredSortedHotels} from '../../../store/memoized-selectors';
 import Header from '../../header/header';
 import Cities from '../../cities/cities';
 import PlacesEmpty from '../../places/places-empty';
@@ -10,17 +14,15 @@ import Places from '../../places/places';
 import LoadWrapper from '../../load-wrapper/load-wrapper';
 import {Types} from '../../../const';
 
-const MainPage = ({hotels, city, sort, isHotelsLoaded, isLoadingError, onLoadData}) => {
+const MainPage = ({hotels, city, isHotelsLoading, isLoadingError, authorizationStatus, onLoadData}) => {
   const [activeCard, setActiveCard] = useState(-1);
 
   const onCardHover = (id) => setActiveCard(id);
   const onCardLeave = () => setActiveCard(-1);
 
   useEffect(() => {
-    if (!isHotelsLoaded) {
-      onLoadData();
-    }
-  }, [isHotelsLoaded]);
+    onLoadData();
+  }, [authorizationStatus]);
 
   return (
     <div className="page page--gray page--main">
@@ -31,9 +33,9 @@ const MainPage = ({hotels, city, sort, isHotelsLoaded, isLoadingError, onLoadDat
           <Cities />
         </div>
         <div className="cities">
-          <LoadWrapper isDataLoading={!isHotelsLoaded}>
+          <LoadWrapper isDataLoading={isHotelsLoading}>
             {hotels.length === 0 ? <PlacesEmpty city={city} isLoadingError={isLoadingError} /> :
-              <Places hotels={hotels} city={city} sort={sort} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
+              <Places hotels={hotels} city={city} activeCard={activeCard} onCardHover={onCardHover} onCardLeave={onCardLeave} />}
           </LoadWrapper>
         </div >
       </main>
@@ -44,18 +46,18 @@ const MainPage = ({hotels, city, sort, isHotelsLoaded, isLoadingError, onLoadDat
 MainPage.propTypes = {
   hotels: PropTypes.arrayOf(hotelTypesValidation),
   city: PropTypes.string.isRequired,
-  sort: PropTypes.number.isRequired,
-  isHotelsLoaded: PropTypes.bool.isRequired,
+  isHotelsLoading: PropTypes.bool.isRequired,
   isLoadingError: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({hotels, city, sort, isHotelsLoaded, isLoadingError}) => ({
-  hotels: hotels.filter((item) => item.city.name === city),
-  city,
-  sort,
-  isHotelsLoaded,
-  isLoadingError,
+const mapStateToProps = (state) => ({
+  hotels: getFilteredSortedHotels(state),
+  city: getCity(state),
+  isHotelsLoading: getHotelsLoadingStatus(state),
+  isLoadingError: getLoadingErrorStatus(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
