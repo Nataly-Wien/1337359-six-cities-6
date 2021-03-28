@@ -6,9 +6,8 @@ import RatingList from '../rating-list/rating-list';
 import ReviewField from '../review-field/review-field';
 import withAuth from '../../hoc/with-auth/with-auth';
 import {ReviewsLength} from '../../const';
-import {ActionCreator} from '../../store/action';
 
-const ReviewsForm = ({addReview, requestPosting, isCommentPosting, isPostCommentError}) => {
+const ReviewsForm = ({addReview, isCommentPosting, isPostCommentError}) => {
   const [rating, setRating] = useState(`0`);
   const [review, setReview] = useState(``);
 
@@ -19,7 +18,6 @@ const ReviewsForm = ({addReview, requestPosting, isCommentPosting, isPostComment
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    requestPosting();
     addReview(rating, review);
     setRating(`0`);
     setReview(``);
@@ -48,7 +46,6 @@ ReviewsForm.propTypes = {
   addReview: PropTypes.func,
   isCommentPosting: PropTypes.bool.isRequired,
   isPostCommentError: PropTypes.bool.isRequired,
-  requestPosting: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -56,8 +53,4 @@ const mapStateToProps = (state) => ({
   isPostCommentError: getPostCommentErrorStatus(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  requestPosting: () => dispatch(ActionCreator.requestPostingComment()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withAuth(ReviewsForm));
+export default connect(mapStateToProps, null)(withAuth(ReviewsForm));
