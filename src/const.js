@@ -50,7 +50,6 @@ export const HttpStatusCode = {
 export const emptyUser = {
   id: -1,
   email: ``,
-  password: ``,
   name: ``,
   avatarUrl: EMPTY_AVATAR_URL,
   isPro: false,

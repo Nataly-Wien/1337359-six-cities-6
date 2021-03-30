@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should reviews render correctly 1`] = `
+<div>
+  <h2
+    class="reviews__title"
+  >
+    Reviews · 
+    <span
+      class="reviews__amount"
+    >
+      2
+    </span>
+  </h2>
+  <ul
+    class="reviews__list"
+  >
+    <li
+      class="reviews__item"
+    >
+      <div
+        class="reviews__user user"
+      >
+        <div
+          class="reviews__avatar-wrapper user__avatar-wrapper"
+        >
+          <img
+            alt="Reviews avatar"
+            class="reviews__avatar user__avatar"
+            height="54"
+            src="img/avatar2.jpg"
+            width="54"
+          />
+        </div>
+        <span
+          class="reviews__user-name"
+        >
+          Liz
+        </span>
+      </div>
+      <div
+        class="reviews__info"
+      >
+        <div
+          class="reviews__rating rating"
+        >
+          <div
+            class="reviews__stars rating__stars"
+          >
+            <span
+              style="width: 60%;"
+            />
+            <span
+              class="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <p
+          class="reviews__text"
+        >
+          Excellent location, just across the river from the Louvre and couple of minutes away from dozens of cafes and restaurants.
+        </p>
+        <time
+          class="reviews__time"
+          datetime="2021-02-23T11:17:25.810Z"
+        >
+          February 2021
+        </time>
+      </div>
+    </li>
+    <li
+      class="reviews__item"
+    >
+      <div
+        class="reviews__user user"
+      >
+        <div
+          class="reviews__avatar-wrapper user__avatar-wrapper"
+        >
+          <img
+            alt="Reviews avatar"
+            class="reviews__avatar user__avatar"
+            height="54"
+            src="img/avatar1.jpg"
+            width="54"
+          />
+        </div>
+        <span
+          class="reviews__user-name"
+        >
+          Carlo
+        </span>
+      </div>
+      <div
+        class="reviews__info"
+      >
+        <div
+          class="reviews__rating rating"
+        >
+          <div
+            class="reviews__stars rating__stars"
+          >
+            <span
+              style="width: 100%;"
+            />
+            <span
+              class="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <p
+          class="reviews__text"
+        >
+          Cannot fault the hotel for cleanliness and friendliness of staff, who attended to anything we asked. The hotel facilities were great and the breakfast was really good value and lots of choice.
+        </p>
+        <time
+          class="reviews__time"
+          datetime="2020-11-27T09:09:35.123Z"
+        >
+          November 2020
+        </time>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

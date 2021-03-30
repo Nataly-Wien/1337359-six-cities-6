@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
+import {Router as BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {redirect} from './store/middleware/redirect';
 import {createAPI} from './services/api';
 import reducer from './store/reducer';
+import browserHistory from "./browser-history";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
 import {ActionCreator} from './store/action';
@@ -18,6 +20,8 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.wit
 store.dispatch(checkAuth());
 
 ReactDOM.render(<Provider store={store}>
-  <App />
+  <BrowserRouter history={browserHistory}>
+    <App />
+  </BrowserRouter>
 </Provider>, document.querySelector(`#root`)
 );

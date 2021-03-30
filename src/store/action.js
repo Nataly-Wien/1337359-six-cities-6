@@ -108,6 +108,7 @@ export const ActionCreator = {
   failureFavorites: () => ({
     type: ActionType.FAILURE_FAVORITES,
   }),
+
   replaceHotel: (payload) => ({
     type: ActionType.REPLACE_HOTEL,
     payload,

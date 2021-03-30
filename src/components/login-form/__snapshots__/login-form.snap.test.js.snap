@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should login form render correctly 1`] = `
+<div>
+  <form
+    action="#"
+    class="login__form form"
+    method="post"
+  >
+    <div
+      class="login__input-wrapper form__input-wrapper"
+    >
+      <label
+        class="visually-hidden"
+      >
+        E-mail
+      </label>
+      <input
+        class="login__input form__input"
+        name="email"
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      class="login__input-wrapper form__input-wrapper"
+    >
+      <label
+        class="visually-hidden"
+      >
+        Password
+      </label>
+      <input
+        class="login__input form__input"
+        name="password"
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      class="login__submit form__submit button"
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;

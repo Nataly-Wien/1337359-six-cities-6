@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should review textarea render correctly 1`] = `
+<div>
+  <textarea
+    class="reviews__textarea form__textarea"
+    data-testid="review"
+    id="review"
+    name="review"
+    placeholder="Tell how was your stay, what you like and what can be improved"
+  >
+    Lovely bright space and comfortable beds. We had two apartments, one at the front and one at the back. The apartment at the back was lovely and roomy, the one at the front pretty cramped, but good value for money.
+  </textarea>
+</div>
+`;

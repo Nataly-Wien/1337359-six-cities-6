@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should hotel host render correctly 1`] = `
+<div>
+  <div
+    class="property__host"
+  >
+    <h2
+      class="property__host-title"
+    >
+      Meet the host
+    </h2>
+    <div
+      class="property__host-user user"
+    >
+      <div
+        class="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
+      >
+        <img
+          alt="Host avatar"
+          class="property__avatar user__avatar"
+          height="74"
+          src="img/avatar.jpg"
+          width="74"
+        />
+      </div>
+      <span
+        class="property__user-name"
+      >
+        Mick
+      </span>
+    </div>
+    <div
+      class="property__description"
+    >
+      <p
+        class="property__text"
+      >
+        In the center of Paris, is a 10-minute walk from Notre-Dame Cathedral and 293 m from Saint-Michel Metro Station. It features a fitness room and free Wi-Fi access.
+      </p>
+    </div>
+  </div>
+</div>
+`;

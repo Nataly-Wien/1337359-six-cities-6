@@ -1,6 +1,5 @@
 import React from 'react';
-import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
-import browserHistory from '../../browser-history';
+import {Switch, Route} from 'react-router-dom';
 import MainPage from '../pages/main-page/main-page';
 import LoginPage from '../pages/login-page/login-page';
 import FavoritesPage from '../pages/favorites-page/favorites-page';
@@ -11,24 +10,22 @@ import {Routes, AuthorizationStatus} from '../../const';
 
 const App = () => {
   return (
-    <BrowserRouter history={browserHistory}>
-      <Switch>
-        <Route exact path={Routes.HOME}>
-          <MainPage />
-        </Route>
-        <PrivateRoute exact path={Routes.LOGIN} component={LoginPage} permittedAuthStatus={AuthorizationStatus.NO_AUTH}
-          permittedPath={Routes.HOME} />
-        <PrivateRoute exact path={Routes.FAVORITES} component={FavoritesPage} permittedAuthStatus={AuthorizationStatus.AUTH}
-          permittedPath={Routes.LOGIN} />
-        <Route exact path={Routes.ROOM} component={RoomPage} />
-        <Route exact path={Routes.NOT_FOUND}>
-          <NotFoundPage />
-        </Route>
-        <Route>
-          <NotFoundPage />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path={Routes.HOME}>
+        <MainPage />
+      </Route>
+      <PrivateRoute exact path={Routes.LOGIN} component={LoginPage} permittedAuthStatus={AuthorizationStatus.NO_AUTH}
+        permittedPath={Routes.HOME} />
+      <PrivateRoute exact path={Routes.FAVORITES} component={FavoritesPage} permittedAuthStatus={AuthorizationStatus.AUTH}
+        permittedPath={Routes.LOGIN} />
+      <Route exact path={Routes.ROOM} component={RoomPage} />
+      <Route exact path={Routes.NOT_FOUND}>
+        <NotFoundPage />
+      </Route>
+      <Route>
+        <NotFoundPage />
+      </Route>
+    </Switch>
   );
 };
 
