@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should login input render correctly 1`] = `
+<div>
+  <input
+    class="login__input form__input"
+    name="email"
+    placeholder="Email"
+    type="email"
+    value="Oliver.conner@gmail.com"
+  />
+</div>
+`;

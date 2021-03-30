@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should photos render correctly 1`] = `
+<div>
+  <div
+    class="property__gallery-container container"
+  >
+    <div
+      class="property__gallery"
+    >
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="img/img1.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="img/img2.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="img/img3.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="img/img4.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="img/img5.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="img/img6.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
