@@ -145,7 +145,7 @@ const data = (state = initialState, action) => {
         ...state,
         hotels: state.hotels.map((item) => item.id === action.payload.id ? action.payload : item),
         currentHotel: state.currentHotel.id === action.payload.id ? action.payload : state.currentHotel,
-        favorites: state.favorites.map((item) => item.id === action.payload.id ? action.payload : item),
+        favorites: state.favorites.filter((item) => item.id !== action.payload.id),
         nearHotels: state.nearHotels.map((item) => item.id === action.payload.id ? action.payload : item),
       };
   }

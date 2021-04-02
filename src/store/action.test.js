@@ -705,6 +705,22 @@ describe(`Action Creators work correctly`, () => {
     expect(ActionCreator.setUser(user)).toEqual(expectedAction);
   });
 
+  it(`Action Creator for setting login error status works correctly`, () => {
+    const expectedAction = {
+      type: ActionType.LOGIN_FAILURE,
+    };
+
+    expect(ActionCreator.loginFailure()).toEqual(expectedAction);
+  });
+
+  it(`Action Creator for resetting login error status works correctly`, () => {
+    const expectedAction = {
+      type: ActionType.RESET_LOGIN_ERROR,
+    };
+
+    expect(ActionCreator.resetLoginError()).toEqual(expectedAction);
+  });
+
   it(`Action Creator for logout works correctly (without payload)`, () => {
     const expectedAction = {
       type: ActionType.LOGOUT,
@@ -720,5 +736,13 @@ describe(`Action Creators work correctly`, () => {
     };
 
     expect(ActionCreator.redirectToRoute(Routes.LOGIN)).toEqual(expectedAction);
+  });
+
+  it(`Action Creator for "go back" in history works correctly (without payload)`, () => {
+    const expectedAction = {
+      type: ActionType.REDIRECT_TO_BACK,
+    };
+
+    expect(ActionCreator.redirectToBack()).toEqual(expectedAction);
   });
 });

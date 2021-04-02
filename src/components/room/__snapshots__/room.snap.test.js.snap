@@ -1,0 +1,483 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should current offer render correctly 1`] = `
+<div>
+  <section
+    class="property"
+  >
+    <div
+      class="property__gallery-container container"
+    >
+      <div
+        class="property__gallery"
+      >
+        <div
+          class="property__image-wrapper"
+        >
+          <img
+            alt="Photo studio"
+            class="property__image"
+            src="img/img1.jpg"
+          />
+        </div>
+        <div
+          class="property__image-wrapper"
+        >
+          <img
+            alt="Photo studio"
+            class="property__image"
+            src="img/img2.jpg"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="property__container container"
+    >
+      <div
+        class="property__wrapper"
+      >
+        <div
+          class="property__name-wrapper"
+        >
+          <h1
+            class="property__name"
+          >
+            Citadines Saint-Germain-des-Prés Paris
+          </h1>
+          <button
+            class="property__bookmark-button button "
+            type="button"
+          >
+            <svg
+              class="property__bookmark-icon"
+              height="33"
+              width="31"
+            >
+              <use
+                xlink:href="#icon-bookmark"
+              >
+                 
+              </use>
+            </svg>
+            <span
+              class="visually-hidden"
+            >
+              To bookmarks
+            </span>
+          </button>
+        </div>
+        <div
+          class="property__rating rating"
+        >
+          <div
+            class="property__stars rating__stars"
+          >
+            <span
+              style="width: 60%;"
+            />
+            <span
+              class="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+          <span
+            class="property__rating-value rating__value"
+          >
+            3.3
+          </span>
+        </div>
+        <ul
+          class="property__features"
+        >
+          <li
+            class="property__feature property__feature--entire"
+          >
+            Studio
+          </li>
+          <li
+            class="property__feature property__feature--bedrooms"
+          >
+            1 Bedroom
+          </li>
+          <li
+            class="property__feature property__feature--adults"
+          >
+            Max 2 adults
+          </li>
+        </ul>
+        <div
+          class="property__price"
+        >
+          <b
+            class="property__price-value"
+          >
+            €
+            65
+          </b>
+          <span
+            class="property__price-text"
+          >
+             night
+          </span>
+        </div>
+        <div
+          class="property__inside"
+        >
+          <h2
+            class="property__inside-title"
+          >
+            What's inside
+          </h2>
+          <ul
+            class="property__inside-list"
+          >
+            <li
+              class="property__inside-item"
+            >
+              Air conditioning
+            </li>
+            <li
+              class="property__inside-item"
+            >
+              Private Bathroom
+            </li>
+            <li
+              class="property__inside-item"
+            >
+              Dishwasher
+            </li>
+          </ul>
+        </div>
+        <div
+          class="property__host"
+        >
+          <h2
+            class="property__host-title"
+          >
+            Meet the host
+          </h2>
+          <div
+            class="property__host-user user"
+          >
+            <div
+              class="property__avatar-wrapper user__avatar-wrapper"
+            >
+              <img
+                alt="Host avatar"
+                class="property__avatar user__avatar"
+                height="74"
+                src="img/av1.jpg"
+                width="74"
+              />
+            </div>
+            <span
+              class="property__user-name"
+            >
+              Nino
+            </span>
+          </div>
+          <div
+            class="property__description"
+          >
+            <p
+              class="property__text"
+            >
+              Along the beautiful Prinsengracht canal in the heart of Amsterdam, you will find Dikker en Thijs Fenice Hotel. Experience a luxurious ambiance and walk to almost all famous sights. The hotel is set in a 18th century warehouse.
+            </p>
+          </div>
+        </div>
+        <section
+          class="property__reviews reviews"
+        >
+          <h2
+            class="reviews__title"
+          >
+            Reviews · 
+            <span
+              class="reviews__amount"
+            >
+              0
+            </span>
+          </h2>
+          <ul
+            class="reviews__list"
+          />
+          <form
+            action="#"
+            class="reviews__form form"
+            method="post"
+          >
+            <fieldset>
+              <div
+                class="reviews__rating-form form__rating"
+              >
+                <input
+                  class="form__rating-input visually-hidden"
+                  id="5-stars"
+                  name="rating"
+                  type="radio"
+                  value="5"
+                />
+                <label
+                  class="reviews__rating-label form__rating-label"
+                  for="5-stars"
+                  title="perfect"
+                >
+                  <svg
+                    class="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlink:href="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  class="form__rating-input visually-hidden"
+                  id="4-stars"
+                  name="rating"
+                  type="radio"
+                  value="4"
+                />
+                <label
+                  class="reviews__rating-label form__rating-label"
+                  for="4-stars"
+                  title="good"
+                >
+                  <svg
+                    class="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlink:href="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  class="form__rating-input visually-hidden"
+                  id="3-stars"
+                  name="rating"
+                  type="radio"
+                  value="3"
+                />
+                <label
+                  class="reviews__rating-label form__rating-label"
+                  for="3-stars"
+                  title="not bad"
+                >
+                  <svg
+                    class="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlink:href="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  class="form__rating-input visually-hidden"
+                  id="2-stars"
+                  name="rating"
+                  type="radio"
+                  value="2"
+                />
+                <label
+                  class="reviews__rating-label form__rating-label"
+                  for="2-stars"
+                  title="badly"
+                >
+                  <svg
+                    class="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlink:href="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  class="form__rating-input visually-hidden"
+                  id="1-stars"
+                  name="rating"
+                  type="radio"
+                  value="1"
+                />
+                <label
+                  class="reviews__rating-label form__rating-label"
+                  for="1-stars"
+                  title="terribly"
+                >
+                  <svg
+                    class="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlink:href="#icon-star"
+                    />
+                  </svg>
+                </label>
+              </div>
+              <textarea
+                class="reviews__textarea form__textarea"
+                data-testid="review"
+                id="review"
+                name="review"
+                placeholder="Tell how was your stay, what you like and what can be improved"
+              />
+              <div
+                class="reviews__button-wrapper"
+              >
+                <p
+                  class="reviews__help"
+                >
+                  To submit review please make sure to set 
+                  <span
+                    class="reviews__star"
+                  >
+                    rating
+                  </span>
+                   and describe your stay with at least 
+                  <b
+                    class="reviews__text-amount"
+                  >
+                    50 characters
+                  </b>
+                  .
+                </p>
+                <button
+                  class="reviews__submit form__submit button"
+                  disabled=""
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </section>
+      </div>
+    </div>
+    <section
+      class="property__map map"
+    >
+      <div
+        class="leaflet-container leaflet-grab leaflet-touch-drag"
+        id="map"
+        style="height: 100%; width: 100%; position: relative;"
+        tabindex="0"
+      >
+        <div
+          class="leaflet-pane leaflet-map-pane"
+          style="left: 0px; top: 0px;"
+        >
+          <div
+            class="leaflet-pane leaflet-tile-pane"
+          >
+            <div
+              class="leaflet-layer "
+              style="z-index: 1;"
+            >
+              <div
+                class="leaflet-tile-container leaflet-zoom-animated"
+                style="z-index: 18; left: 0px; top: 0px;"
+              >
+                <img
+                  alt=""
+                  class="leaflet-tile"
+                  role="presentation"
+                  src="https://a.basemaps.cartocdn.com/rastertiles/voyager/12/2074/1409.png"
+                  style="width: 256px; height: 256px; left: -193px; top: -36px;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="leaflet-pane leaflet-shadow-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-overlay-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-marker-pane"
+          >
+            <img
+              alt=""
+              class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+              src="img/pin-active.svg"
+              style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: 0px; top: 0px; z-index: 0;"
+              tabindex="0"
+              title="Citadines Saint-Germain-des-Prés Paris"
+            />
+          </div>
+          <div
+            class="leaflet-pane leaflet-tooltip-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-popup-pane"
+          />
+        </div>
+        <div
+          class="leaflet-control-container"
+        >
+          <div
+            class="leaflet-top leaflet-left"
+          />
+          <div
+            class="leaflet-top leaflet-right"
+          />
+          <div
+            class="leaflet-bottom leaflet-left"
+          />
+          <div
+            class="leaflet-bottom leaflet-right"
+          >
+            <div
+              class="leaflet-control-attribution leaflet-control"
+            >
+              <a
+                href="https://leafletjs.com"
+                title="A JS library for interactive maps"
+              >
+                Leaflet
+              </a>
+               | © 
+              <a
+                href="https://www.openstreetmap.org/copyright"
+              >
+                OpenStreetMap
+              </a>
+               contributors © 
+              <a
+                href="https://carto.com/attributions"
+              >
+                CARTO
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <div
+    class="container"
+  >
+    <section
+      class="near-places places"
+    >
+      <h2
+        class="near-places__title"
+      />
+      <div
+        class="near-places__list places__list"
+      />
+    </section>
+  </div>
+</div>
+`;

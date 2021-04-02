@@ -6,7 +6,7 @@ const RoomInside = ({goods}) => {
     <div className="property__inside">
       <h2 className="property__inside-title">What&apos;s inside</h2>
       <ul className="property__inside-list">
-        {goods.map((item, i) => <li className="property__inside-item" key={`${item}-${i}`}>{item}</li>)};
+        {goods.map((item, i) => <li className="property__inside-item" key={`${item}-${i}`}>{item}</li>)}
       </ul>
     </div>
   );

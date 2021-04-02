@@ -23,23 +23,39 @@ const Map = ({city, points, activeMarker}) => {
       .tileLayer(LeafletConst.TITLE_LAYER, {attribution: LeafletConst.ATTRIBUTION})
       .addTo(mapRef.current);
 
-    points.forEach((point) => {
-      const customIcon = point.id === activeMarker ? MAP_ICON_ACTIVE : MAP_ICON;
-
-      leaflet
-        .marker({
-          lat: point.location.latitude,
-          lng: point.location.longitude,
-        }, {
-          icon: leaflet.icon(customIcon),
-          title: point.title,
-        })
-        .addTo(mapRef.current)
-        .bindPopup(point.title);
-    });
+    setMarkers(mapRef.current, points, activeMarker);
 
     return () => mapRef.current.remove();
-  });
+  }, []);
+
+  useEffect(() => {
+    mapRef.current.flyTo(new leaflet.LatLng(city.latitude, city.longitude), city.zoom);
+    removeMarkers(mapRef.current);
+    setMarkers(mapRef.current, points, activeMarker);
+  }, [activeMarker]);
+
+  const setMarkers = (map, cards, activeCard) => {
+    cards.forEach((card) => {
+      const customIcon = card.id === activeCard ? MAP_ICON_ACTIVE : MAP_ICON;
+
+      leaflet.marker({
+        lat: card.location.latitude,
+        lng: card.location.longitude,
+      }, {
+        icon: leaflet.icon(customIcon),
+        title: card.title,
+      }).addTo(map)
+        .bindPopup(card.title);
+    });
+  };
+
+  const removeMarkers = (map) => {
+    map.eachLayer((layer) => {
+      if (layer instanceof leaflet.Marker) {
+        layer.remove();
+      }
+    });
+  };
 
   return (
     <div id="map" ref={mapRef} style={{height: `100%`, width: `100%`}} ></div>

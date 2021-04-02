@@ -14,7 +14,7 @@ const ReviewsForm = ({addReview, isCommentPosting, isPostCommentError}) => {
   const onRatingChange = (evt) => setRating(evt.target.value);
   const onReviewChange = (evt) => setReview(evt.target.value);
 
-  const isButtonDisabled = rating === 0 || review.length < ReviewsLength.MIN || review.length > ReviewsLength.MAX;
+  const isButtonDisabled = rating === `0` || review.length < ReviewsLength.MIN || review.length > ReviewsLength.MAX;
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();

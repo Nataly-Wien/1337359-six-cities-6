@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import LoginField from './login-field';
 import PasswordField from './password-field';
-import {Routes} from '../../const';
+import {getLoginErrorStatus} from '../../store/user/selectors';
+import {ActionCreator} from '../../store/action';
 
-const LoginForm = ({signIn}) => {
-  const history = useHistory();
-
+const LoginForm = ({signIn, isLoginError, onLoginFormIncorrect}) => {
   const [login, setLogin] = useState(``);
   const [password, setPassword] = useState(``);
 
@@ -16,12 +15,10 @@ const LoginForm = ({signIn}) => {
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    signIn({login, password});
-
-    if (history.length > 2) {
-      history.goBack();
+    if (login !== `` && password !== ``) {
+      signIn({login, password});
     } else {
-      history.push(Routes.HOME);
+      onLoginFormIncorrect();
     }
   };
 
@@ -36,12 +33,27 @@ const LoginForm = ({signIn}) => {
         <PasswordField password={password} onChange={onPasswordChange} />
       </div>
       <button className="login__submit form__submit button" type="submit">Sign in</button>
+      {isLoginError && <div className="reviews__text" style={{
+        fontWeight: `bold`,
+        width: `90%`,
+        marginTop: `15px`
+      }}>Please enter correct and not empty login and password</div>}
     </form>
   );
 };
 
 LoginForm.propTypes = {
   signIn: PropTypes.func,
+  isLoginError: PropTypes.bool.isRequired,
+  onLoginFormIncorrect: PropTypes.func,
 };
 
-export default LoginForm;
+const mapStateToProps = (state) => ({
+  isLoginError: getLoginErrorStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoginFormIncorrect: () => dispatch(ActionCreator.loginFailure()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

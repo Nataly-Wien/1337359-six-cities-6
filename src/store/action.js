@@ -16,6 +16,8 @@ export const ActionType = {
 
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_USER: `user/setUser`,
+  LOGIN_FAILURE: `user/loginFailure`,
+  RESET_LOGIN_ERROR: `user/resetLoginError`,
   LOGOUT: `user/logout`,
 
   REQUEST_COMMENTS: `data/requestComments`,
@@ -33,6 +35,7 @@ export const ActionType = {
   REPLACE_HOTEL: `data/replaceHotel`,
 
   REDIRECT_TO_ROUTE: `offers/redirectToRoute`,
+  REDIRECT_TO_BACK: `offers/redirectToBack`,
 };
 
 export const ActionCreator = {
@@ -122,6 +125,12 @@ export const ActionCreator = {
     type: ActionType.SET_USER,
     payload,
   }),
+  loginFailure: () => ({
+    type: ActionType.LOGIN_FAILURE,
+  }),
+  resetLoginError: () => ({
+    type: ActionType.RESET_LOGIN_ERROR,
+  }),
   logout: () => ({
     type: ActionType.LOGOUT,
   }),
@@ -129,5 +138,8 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
+  }),
+  redirectToBack: () => ({
+    type: ActionType.REDIRECT_TO_BACK,
   }),
 };

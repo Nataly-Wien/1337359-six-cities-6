@@ -93,10 +93,15 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(Url.LOGIN, {email, password})
     .then(({data}) => {
-      dispatch(ActionCreator.setUser(adaptUserToClient(data)));
       dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.setUser(adaptUserToClient(data)));
+      dispatch(ActionCreator.redirectToBack());
     })
-    .catch(() => { })
+    .catch((err) => {
+      if (err === HttpStatusCode.LOGIN_FAILURE) {
+        dispatch(ActionCreator.loginFailure());
+      }
+    })
 );
 
 export const logout = () => (dispatch, _getState, api) => (api.get(Url.LOGOUT)
