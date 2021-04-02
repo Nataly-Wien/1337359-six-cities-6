@@ -127,7 +127,6 @@ exports[`Should routing work correctly Render SignIn page when navigate to url "
           >
             <a
               class="locations__item-link"
-              href="#"
             >
               <span>
                 Amsterdam
@@ -579,7 +578,7 @@ exports[`Should routing work correctly Render room page when navigate to url "/f
                 >
                   <a
                     class="locations__item-link"
-                    href="#"
+                    href="/"
                   >
                     <span>
                       Amsterdam
@@ -831,7 +830,6 @@ exports[`Should routing work correctly Render room page when navigate to url "/f
           >
             <a
               class="locations__item-link"
-              href="#"
             >
               <span>
                 Amsterdam

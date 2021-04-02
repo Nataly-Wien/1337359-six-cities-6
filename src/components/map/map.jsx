@@ -26,10 +26,9 @@ const Map = ({city, points, activeMarker}) => {
     setMarkers(mapRef.current, points, activeMarker);
 
     return () => mapRef.current.remove();
-  }, []);
+  }, [city]);
 
   useEffect(() => {
-    mapRef.current.flyTo(new leaflet.LatLng(city.latitude, city.longitude), city.zoom);
     removeMarkers(mapRef.current);
     setMarkers(mapRef.current, points, activeMarker);
   }, [activeMarker]);

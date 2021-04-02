@@ -92,7 +92,7 @@ exports[`Should favorites page render correctly 1`] = `
                 >
                   <a
                     class="locations__item-link"
-                    href="#"
+                    href="/"
                   >
                     <span>
                       Amsterdam

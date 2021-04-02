@@ -4,7 +4,7 @@ import {Router} from 'react-router-dom';
 import {render} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import {createMemoryHistory} from 'history';
-import Location from './location';
+import {Location} from './location';
 import {Types} from '../../const';
 
 const mockStore = configureStore({});
