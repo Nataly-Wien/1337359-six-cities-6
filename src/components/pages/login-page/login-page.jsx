@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import {getLoadingErrorStatus} from '../../../store/data/selectors';
@@ -7,8 +7,13 @@ import Header from '../../header/header';
 import LoginForm from '../../login-form/login-form';
 import {login} from '../../../store/api-actions';
 import ErrorWrapper from '../../error-wrapper/error-wrapper';
+import {ActionCreator} from '../../../store/action';
 
-const LoginPage = ({signInHandler, isLoadingError}) => {
+const LoginPage = ({signInHandler, isLoadingError, onPageLoad}) => {
+  useEffect(() => {
+    onPageLoad();
+  }, []);
+
   return (
     <div className="page page--gray page--login">
       <Header page={Types.NOT_MAIN_PAGE} />
@@ -22,7 +27,7 @@ const LoginPage = ({signInHandler, isLoadingError}) => {
           </ErrorWrapper>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <a className="locations__item-link">
                 <span>Amsterdam</span>
               </a>
             </div>
@@ -36,10 +41,12 @@ const LoginPage = ({signInHandler, isLoadingError}) => {
 LoginPage.propTypes = {
   signInHandler: PropTypes.func,
   isLoadingError: PropTypes.bool.isRequired,
+  onPageLoad: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   signInHandler: (user) => dispatch(login(user)),
+  onPageLoad: () => dispatch(ActionCreator.resetLoginError()),
 });
 
 const mapStateToProps = (state) => ({

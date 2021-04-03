@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should logout button render correctly 1`] = `
+<div>
+  <button
+    class="button"
+    style="margin-left: 10px; width: 18px; height: 18px; background-image: url(../img/logout.svg);"
+  />
+</div>
+`;

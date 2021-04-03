@@ -10,7 +10,11 @@ const api = createAPI(() => { });
 describe(`User reducers work correctly`, () => {
 
   it(`Reducer with empty params  returns initial state`, () => {
-    expect(user(undefined, {})).toEqual({authorizationStatus: AuthorizationStatus.NO_AUTH, user: emptyUser});
+    expect(user(undefined, {})).toEqual({
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      user: emptyUser,
+      isLoginError: false,
+    });
   });
 
 
@@ -79,6 +83,53 @@ describe(`User reducers work correctly`, () => {
     });
   });
 
+  it(`Reducer sets login error status correctly`, () => {
+    const state = {
+      authorizationStatus: ``,
+      isLoginError: false,
+      user: {},
+    };
+
+    expect(user(state, ActionCreator.loginFailure())).toEqual({
+      authorizationStatus: ``,
+      isLoginError: true,
+      user: {},
+    });
+
+    const setErrorAction = {
+      type: ActionType.LOGIN_FAILURE,
+    };
+
+    expect(user(state, setErrorAction)).toEqual({
+      authorizationStatus: ``,
+      isLoginError: true,
+      user: {},
+    });
+  });
+
+  it(`Reducer resets login error status correctly`, () => {
+    const state = {
+      authorizationStatus: ``,
+      isLoginError: true,
+      user: {},
+    };
+
+    expect(user(state, ActionCreator.resetLoginError())).toEqual({
+      authorizationStatus: ``,
+      isLoginError: false,
+      user: {},
+    });
+
+    const resetErrorAction = {
+      type: ActionType.RESET_LOGIN_ERROR,
+    };
+
+    expect(user(state, resetErrorAction)).toEqual({
+      authorizationStatus: ``,
+      isLoginError: false,
+      user: {},
+    });
+  });
 
   it(`Reducer makes logout correctly`, () => {
     const stateAuth = {
@@ -179,16 +230,20 @@ describe(`User async operations work correctly`, () => {
 
     return loginLoader(dispatch, () => { }, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.AUTH,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.SET_USER,
           payload: receivedUser,
         });
 
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.REQUIRED_AUTHORIZATION,
-          payload: AuthorizationStatus.AUTH,
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ActionType.REDIRECT_TO_BACK,
         });
       });
   });

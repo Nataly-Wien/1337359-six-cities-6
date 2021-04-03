@@ -5,6 +5,7 @@ import {AuthorizationStatus, emptyUser} from '../../const';
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   user: emptyUser,
+  isLoginError: false,
 };
 
 const user = (state = initialState, action) => {
@@ -19,6 +20,18 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+
+    case ActionType.LOGIN_FAILURE:
+      return {
+        ...state,
+        isLoginError: true,
+      };
+
+    case ActionType.RESET_LOGIN_ERROR:
+      return {
+        ...state,
+        isLoginError: false,
       };
 
     case ActionType.LOGOUT:

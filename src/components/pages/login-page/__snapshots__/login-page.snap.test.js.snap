@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Favorites page render correctly 1`] = `
+<div>
+  <div
+    class="page page--gray page--login"
+  >
+    <header
+      class="header"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="header__wrapper"
+        >
+          <div
+            class="header__left"
+          >
+            <a
+              class="header__logo-link"
+              href="/"
+            >
+              <img
+                alt="6 cities logo"
+                class="header__logo"
+                height="41"
+                src="img/logo.svg"
+                width="81"
+              />
+            </a>
+          </div>
+          <nav
+            class="header__nav"
+          >
+            <ul
+              class="header__nav-list"
+            >
+              <li
+                class="header__nav-item user"
+                style="display: flex;"
+              >
+                <a
+                  class="header__nav-link header__nav-link--profile"
+                  href="/favorites"
+                >
+                  <div
+                    class="header__avatar-wrapper user__avatar-wrapper"
+                    style="background-image: url(img/avatar.jpg);"
+                  />
+                  <span
+                    class="header__user-name user__name"
+                  >
+                    Oliver.conner@gmail.com
+                  </span>
+                </a>
+                <button
+                  class="button"
+                  style="margin-left: 10px; width: 18px; height: 18px; background-image: url(../img/logout.svg);"
+                />
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main
+      class="page__main page__main--login"
+    >
+      <div
+        class="page__login-container container"
+      >
+        <section
+          class="login"
+        >
+          <h1
+            class="login__title"
+          >
+            Sign in
+          </h1>
+          <form
+            action="#"
+            class="login__form form"
+            method="post"
+          >
+            <div
+              class="login__input-wrapper form__input-wrapper"
+            >
+              <label
+                class="visually-hidden"
+              >
+                E-mail
+              </label>
+              <input
+                class="login__input form__input"
+                name="email"
+                placeholder="Email"
+                type="email"
+                value=""
+              />
+            </div>
+            <div
+              class="login__input-wrapper form__input-wrapper"
+            >
+              <label
+                class="visually-hidden"
+              >
+                Password
+              </label>
+              <input
+                class="login__input form__input"
+                name="password"
+                placeholder="Password"
+                type="password"
+                value=""
+              />
+            </div>
+            <button
+              class="login__submit form__submit button"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </form>
+        </section>
+        <section
+          class="locations locations--login locations--current"
+        >
+          <div
+            class="locations__item"
+          >
+            <a
+              class="locations__item-link"
+            >
+              <span>
+                Amsterdam
+              </span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+`;

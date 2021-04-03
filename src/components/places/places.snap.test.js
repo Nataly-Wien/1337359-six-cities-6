@@ -1,18 +1,21 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router-dom';
-import {render} from '@testing-library/react';
-import configureStore from 'redux-mock-store';
 import {createMemoryHistory} from 'history';
-import {Location} from './location';
-import {Types} from '../../const';
+import configureStore from 'redux-mock-store';
+import {render} from '@testing-library/react';
+import Places from './places';
 
-const mockStore = configureStore({});
 const history = createMemoryHistory();
+const mockStore = configureStore({});
+const store = mockStore({
+  OFFERS: {
+    sort: 0,
+    city: `Paris`,
+  },
+});
 
-it(`Should hotels list in one location at favorites page render correctly`, () => {
-  const city = `Amsterdam`;
-
+it(`Should offers render correctly`, () => {
   const hotels = [{
     id: 5,
     city: {
@@ -62,12 +65,18 @@ it(`Should hotels list in one location at favorites page render correctly`, () =
     },
   }];
 
-  const {container} = render(<Provider store={mockStore({})}>
+  const city = `Paris`;
+  const activeCard = 5;
+
+  const onCardHover = () => { };
+  const onCardLeave = () => { };
+
+  const {container} = render(<Provider store={store}>
     <Router history={history}>
-      <Location hotels={hotels} page={Types.FAVORITES_PAGE} city={city} />
+      <Places hotels={hotels} city={city} activeCard={activeCard} onCardHover={onCardHover}
+        onCardLeave={onCardLeave} />
     </Router>
   </Provider>);
 
   expect(container).toMatchSnapshot();
-
 });
