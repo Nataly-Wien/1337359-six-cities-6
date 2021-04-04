@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should map component work correctly Should map at main page work correctly 1`] = `
+<div>
+  <div
+    class="leaflet-container leaflet-grab leaflet-touch-drag"
+    id="map"
+    style="height: 100%; width: 100%; position: relative;"
+    tabindex="0"
+  >
+    <div
+      class="leaflet-pane leaflet-map-pane"
+      style="left: 0px; top: 0px;"
+    >
+      <div
+        class="leaflet-pane leaflet-tile-pane"
+      >
+        <div
+          class="leaflet-layer "
+          style="z-index: 1;"
+        >
+          <div
+            class="leaflet-tile-container leaflet-zoom-animated"
+            style="z-index: 18; left: 0px; top: 0px;"
+          >
+            <img
+              alt=""
+              class="leaflet-tile"
+              role="presentation"
+              src="https://c.basemaps.cartocdn.com/rastertiles/voyager/12/2103/1346.png"
+              style="width: 256px; height: 256px; left: -186px; top: -5px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="leaflet-pane leaflet-shadow-pane"
+      />
+      <div
+        class="leaflet-pane leaflet-overlay-pane"
+      />
+      <div
+        class="leaflet-pane leaflet-marker-pane"
+      >
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -130px; top: -78px; z-index: -78;"
+          tabindex="0"
+          title="Cityden Residences Museum Square"
+        />
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -130px; top: 24px; z-index: 24;"
+          tabindex="0"
+          title="Dikker & Thijs Hotel"
+        />
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin-active.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -184px; top: 191px; z-index: 191;"
+          tabindex="0"
+          title="Hotel van de Vijsel"
+        />
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -111px; top: -83px; z-index: -83;"
+          tabindex="0"
+          title="Park Plaza Victoria Amsterdam"
+        />
+      </div>
+      <div
+        class="leaflet-pane leaflet-tooltip-pane"
+      />
+      <div
+        class="leaflet-pane leaflet-popup-pane"
+      />
+    </div>
+    <div
+      class="leaflet-control-container"
+    >
+      <div
+        class="leaflet-top leaflet-left"
+      />
+      <div
+        class="leaflet-top leaflet-right"
+      />
+      <div
+        class="leaflet-bottom leaflet-left"
+      />
+      <div
+        class="leaflet-bottom leaflet-right"
+      >
+        <div
+          class="leaflet-control-attribution leaflet-control"
+        >
+          <a
+            href="https://leafletjs.com"
+            title="A JS library for interactive maps"
+          >
+            Leaflet
+          </a>
+           | © 
+          <a
+            href="https://www.openstreetmap.org/copyright"
+          >
+            OpenStreetMap
+          </a>
+           contributors © 
+          <a
+            href="https://carto.com/attributions"
+          >
+            CARTO
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should map component work correctly Should map at room page work correctly 1`] = `
+<div>
+  <div
+    class="leaflet-container leaflet-grab leaflet-touch-drag"
+    id="map"
+    style="height: 100%; width: 100%; position: relative;"
+    tabindex="0"
+  >
+    <div
+      class="leaflet-pane leaflet-map-pane"
+      style="left: 0px; top: 0px;"
+    >
+      <div
+        class="leaflet-pane leaflet-tile-pane"
+      >
+        <div
+          class="leaflet-layer "
+          style="z-index: 1;"
+        >
+          <div
+            class="leaflet-tile-container leaflet-zoom-animated"
+            style="z-index: 18; left: 0px; top: 0px;"
+          >
+            <img
+              alt=""
+              class="leaflet-tile"
+              role="presentation"
+              src="https://c.basemaps.cartocdn.com/rastertiles/voyager/12/2103/1346.png"
+              style="width: 256px; height: 256px; left: -186px; top: -5px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="leaflet-pane leaflet-shadow-pane"
+      />
+      <div
+        class="leaflet-pane leaflet-overlay-pane"
+      />
+      <div
+        class="leaflet-pane leaflet-marker-pane"
+      >
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -130px; top: -78px; z-index: -78;"
+          tabindex="0"
+          title="Cityden Residences Museum Square"
+        />
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -130px; top: 24px; z-index: 24;"
+          tabindex="0"
+          title="Dikker & Thijs Hotel"
+        />
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -111px; top: -83px; z-index: -83;"
+          tabindex="0"
+          title="Park Plaza Victoria Amsterdam"
+        />
+        <img
+          alt=""
+          class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+          src="img/pin-active.svg"
+          style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -184px; top: 191px; z-index: 191;"
+          tabindex="0"
+          title="Hotel van de Vijsel"
+        />
+      </div>
+      <div
+        class="leaflet-pane leaflet-tooltip-pane"
+      />
+      <div
+        class="leaflet-pane leaflet-popup-pane"
+      />
+    </div>
+    <div
+      class="leaflet-control-container"
+    >
+      <div
+        class="leaflet-top leaflet-left"
+      />
+      <div
+        class="leaflet-top leaflet-right"
+      />
+      <div
+        class="leaflet-bottom leaflet-left"
+      />
+      <div
+        class="leaflet-bottom leaflet-right"
+      >
+        <div
+          class="leaflet-control-attribution leaflet-control"
+        >
+          <a
+            href="https://leafletjs.com"
+            title="A JS library for interactive maps"
+          >
+            Leaflet
+          </a>
+           | © 
+          <a
+            href="https://www.openstreetmap.org/copyright"
+          >
+            OpenStreetMap
+          </a>
+           contributors © 
+          <a
+            href="https://carto.com/attributions"
+          >
+            CARTO
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

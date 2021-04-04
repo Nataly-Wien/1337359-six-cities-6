@@ -215,6 +215,7 @@ exports[`Should current offer render correctly 1`] = `
               >
                 <input
                   class="form__rating-input visually-hidden"
+                  data-testid="radio-5"
                   id="5-stars"
                   name="rating"
                   type="radio"
@@ -237,6 +238,7 @@ exports[`Should current offer render correctly 1`] = `
                 </label>
                 <input
                   class="form__rating-input visually-hidden"
+                  data-testid="radio-4"
                   id="4-stars"
                   name="rating"
                   type="radio"
@@ -259,6 +261,7 @@ exports[`Should current offer render correctly 1`] = `
                 </label>
                 <input
                   class="form__rating-input visually-hidden"
+                  data-testid="radio-3"
                   id="3-stars"
                   name="rating"
                   type="radio"
@@ -281,6 +284,7 @@ exports[`Should current offer render correctly 1`] = `
                 </label>
                 <input
                   class="form__rating-input visually-hidden"
+                  data-testid="radio-2"
                   id="2-stars"
                   name="rating"
                   type="radio"
@@ -303,6 +307,7 @@ exports[`Should current offer render correctly 1`] = `
                 </label>
                 <input
                   class="form__rating-input visually-hidden"
+                  data-testid="radio-1"
                   id="1-stars"
                   name="rating"
                   type="radio"
@@ -353,6 +358,7 @@ exports[`Should current offer render correctly 1`] = `
                 </p>
                 <button
                   class="reviews__submit form__submit button"
+                  data-testid="submit-button"
                   disabled=""
                   type="submit"
                 >
