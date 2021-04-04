@@ -9,9 +9,9 @@ const RatingList = ({onChange, rating}) => {
         const value = HOTEL_RATING_VALUES.length - i;
 
         return <React.Fragment key={item}>
-          <input className="form__rating-input visually-hidden" name="rating" value={(value).toString()} id={`${(value).toString()}-stars`}
-            type="radio" onChange={onChange} checked={(value).toString() === rating} />
-          <label htmlFor={`${(value).toString()}-stars`} className="reviews__rating-label form__rating-label" title={`${item}`}>
+          <input className="form__rating-input visually-hidden" name="rating" value={(value).toString()} id={`${value}-stars`}
+            type="radio" onChange={onChange} data-testid={`radio-${value}`} checked={(value).toString() === rating} />
+          <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={`${item}`}>
             <svg className="form__star-image" width="37" height="33">
               <use xlinkHref="#icon-star"></use>
             </svg>
